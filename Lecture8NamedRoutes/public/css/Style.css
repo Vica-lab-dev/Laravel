@@ -1,0 +1,45 @@
+.Center{
+    text-align: center;
+}
+
+.bgColor{
+    background: darkblue;
+}
+
+.color{
+    color: white;
+}
+
+.padding{
+    padding: 10px;
+}
+
+.decoration{
+    text-decoration: none;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+
+.width{
+    width: 800px;
+}
+
+.margin{
+    margin: 0 auto;
+}
+
+.marginTop{
+    margin-top: 5px;
+}
+
+.marginBottom{
+    margin-bottom: 5px;
+}
+
+.Centering{
+    text-align: center;
+    margin: 0 auto;
+}
