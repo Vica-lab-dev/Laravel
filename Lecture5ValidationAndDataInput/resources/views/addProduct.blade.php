@@ -1,14 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 
     @section("PageTitle")
         Adding Products
     @endsection
-</head>
-<body>
+
     <div>
         <form class="Center" action="/admin/add-products" method="POST">
 
@@ -26,5 +23,4 @@
         </form>
     </div>
 
-</body>
-</html>
+

@@ -1,17 +1,10 @@
 @extends ("layout")
 
-    <!doctype html>
-<html lang="en">
-<head>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @section("PageTitle")
         Welcome
     @endsection
-</head>
-<body>
-
-
 
     @section("PageContent")
         @if($hour >= 0 && $hour <= 12)
@@ -28,13 +21,7 @@
             <p class="Center">{{$product->name}}</p>
         @endforeach
 
-
-
     @endsection
-
-</body>
-</html>
-
 
 
 

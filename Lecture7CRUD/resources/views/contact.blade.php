@@ -1,14 +1,11 @@
 @extends("layout")
-<!doctype html>
-<html lang="en">
-<head>
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @section("PageTitle")
         Contact
     @endsection
-</head>
-<body>
+
     @section("form")
         <div>
             <form class="Center marginTop marginBottom">
@@ -26,6 +23,4 @@
         </div>
     @endsection
 
-</body>
 
-</html>
