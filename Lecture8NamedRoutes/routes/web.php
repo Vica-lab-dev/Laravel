@@ -33,10 +33,10 @@ Route::get("/admin/products", [ProductsController::class, "getAllProducts"]);
 Route::get("/admin/all-products", [ProductsController::class, "index"]) ->name("allProducts");
 Route::get("/admin/delete-product/{product}", [ProductsController::class, "delete"]) ->name("deleteProduct");
 Route::get("/admin/delete-contact/{contact}", [ContactController::class, "delete"]) ->name("deleteContact");
-Route::get("/admin/product/edit/{id}", [ProductsController::class, "singleProduct"]) ->name("editProduct");
-Route::post("/admin/updated-product/{id}", [ProductsController::class, "update"]) ->name("updateProduct");
-Route::get("/admin/contact/edit/{id}", [ContactController::class, "singleContact"]) ->name("editContact");
-Route::post("/admin/updated-contact/{id}", [ContactController::class, "update"]) ->name("updateContact");
+Route::get("/admin/product/edit/{product}", [ProductsController::class, "singleProduct"]) ->name("editProduct");
+Route::post("/admin/updated-product/{product}", [ProductsController::class, "update"]) ->name("updateProduct");
+Route::get("/admin/contact/edit/{contact}", [ContactController::class, "singleContact"]) ->name("editContact");
+Route::post("/admin/updated-contact/{contact}", [ContactController::class, "update"]) ->name("updateContact");
 
 
 

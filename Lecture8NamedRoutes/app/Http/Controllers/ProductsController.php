@@ -58,28 +58,16 @@ class ProductsController extends Controller
         return redirect()->back();
     }
 
-    public function singleProduct(Request $request, $id)
+    public function singleProduct(Request $request, ProductsModel $product)
     {
-        $product = ProductsModel::where(['id' => $id])->first();
-
-        if($product === null)
-        {
-            die("Product not found");
-        }
 
         return view("products/editProduct", compact("product"));
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, ProductsModel $product)
     {
 
-        $product = ProductsModel::where("id", $id)->first();
-
-        if($product === null)
-        {
-            die("Product not found");
-        }
 
         $product->name = $request->get("name");
         $product->description = $request->get("description");

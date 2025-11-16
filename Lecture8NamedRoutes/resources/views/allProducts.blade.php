@@ -24,7 +24,7 @@
                     <td>{{$product->price}}</td>
                     <td>
                         <a href="{{ route('deleteProduct', ['product' => $product->id]) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ route('editProduct', ['id' => $product->id]) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach

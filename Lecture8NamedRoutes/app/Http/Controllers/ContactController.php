@@ -54,26 +54,13 @@ class ContactController extends Controller
         return redirect()->back();
     }
 
-    public function singleContact($id)
+    public function singleContact(ContactModel $contact)
     {
-        $contact = ContactModel::where("id", $id)->first();
-
-        if($contact === null)
-        {
-            die("Contact not found");
-        }
-
         return view("products/editContact", compact("contact", ));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, ContactModel $contact)
     {
-        $contact = ContactModel::where("id", $id)->first();
-
-        if($contact === null)
-        {
-            die("Contact not found");
-        }
 
         $contact -> email = $request->get("email");
         $contact -> subject = $request->get("subject");
