@@ -13,7 +13,7 @@
 
 
                 @if($errors->any())
-                    @foreach($errors->all as $error)
+                    @foreach($errors->all() as $error)
                         <p>Warrning: {{$errors->first()}}</p>
                     @endforeach
                 @endif
