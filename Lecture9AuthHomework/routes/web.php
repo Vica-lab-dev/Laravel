@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,17 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::middleware('auth')->prefix("admin")->group(function () {
+    Route::post('/AddForecastData', [ForecastController::class, 'AddData'])->name('SaveData');
+    Route::get('/AllForecastData', [ForecastController::class, 'getAllData'])->name('AllData');
+
+    Route::view("/AddData", 'AddData');
+
+    Route::get("/editData/{data}", [ForecastController::class, 'singleData'])->name('SingleData');
+    Route::post("/editData/update/{data}", [ForecastController::class, 'updateData'])->name('UpdateData');
+
+    Route::get("/deleteData/{data}", [ForecastController::class, 'deleteData'])->name('deleteData');
+
+
+});
