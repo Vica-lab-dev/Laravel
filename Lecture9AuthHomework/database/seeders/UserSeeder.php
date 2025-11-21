@@ -17,18 +17,22 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $amount = $this->command->ask('How many users would you like to create?', 3);
+        $name = $this->command->ask('What is your name?');
+        $email = $this->command->ask('What is your email?');
         $password = $this->command->getOutput()->ask('What is your password?', 12345);
-        dd($password);
 
-        $faker = Factory::create(); //sr_rs je na cirilici imena kada pokrenemo seed,prazno je eng.
+        if(User::where('email', $email)->exists())
+        {
+            $this->command->getOutput()->error("User with email $email already exists!");
+        }
 
         $this->command->getOutput()->progressStart($amount);
 
         for($i = 0; $i < $amount; $i++)
         {
             User::create([
-                'name' => $faker->name,
-                'email' => $faker->email,
+                'name' => $name,
+                'email' => $email,
                 'password' => Hash::make($password),
             ]);
 

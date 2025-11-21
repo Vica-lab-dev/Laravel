@@ -26,6 +26,11 @@ class UserWeatherSeeder extends Seeder
             $this->command->getOutput()->error("You did not specify a temperature!");
         }
 
+        if(ForecastModel::where('city', $city)->exists())
+        {
+            $this->command->getOutput()->error("City already exists!");
+        }
+
         ForecastModel::create([
             'city' => $city,
             'temperature' => $temperature,
