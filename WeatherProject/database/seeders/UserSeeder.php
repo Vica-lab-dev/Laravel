@@ -24,7 +24,18 @@ class UserSeeder extends Seeder
         if(User::where('email', $email)->exists())
         {
             $this->command->getOutput()->error("User with email $email already exists!");
+            return;
         }
+
+        /**
+         * Ili $user = User::where(['email' => $email])->first();
+         * if($user instanceof User)
+         * {
+         *     $this->command->getOutput()->error("Vec postoji!")
+         *      return;
+         * }
+         * Ovo pisemo jer je za dd($user) povratna info App\Models\User
+         */
 
         $this->command->getOutput()->progressStart($amount);
 
