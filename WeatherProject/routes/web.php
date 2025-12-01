@@ -30,6 +30,6 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::post("/editData/update/{data}", [ForecastController::class, 'updateData'])->name('UpdateData');
 
     Route::get("/deleteData/{data}", [ForecastController::class, 'deleteData'])->name('deleteData');
-
-
 });
+
+    Route::get('/forecast/{city}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
