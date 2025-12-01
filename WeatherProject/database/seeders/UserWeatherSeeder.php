@@ -29,6 +29,7 @@ class UserWeatherSeeder extends Seeder
         if(ForecastModel::where('city', $city)->exists())
         {
             $this->command->getOutput()->error("City already exists!");
+            return;
         }
 
         ForecastModel::create([
