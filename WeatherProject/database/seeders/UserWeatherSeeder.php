@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Database\Seeders;
 
 use App\Models\ForecastModel;
@@ -15,21 +16,13 @@ class UserWeatherSeeder extends Seeder
     public function run(): void
     {
         $city = $this->command->getOutput()->ask('What is your city?');
-        if ($city === null)
-        {
+        if ($city === null) {
             $this->command->getOutput()->error("You did not specify a valid city!");
         }
 
         $temperature = $this->command->getOutput()->ask('What is your temperature?');
-        if($temperature === null)
-        {
+        if ($temperature === null) {
             $this->command->getOutput()->error("You did not specify a temperature!");
-        }
-
-        if(ForecastModel::where('city', $city)->exists())
-        {
-            $this->command->getOutput()->error("City already exists!");
-            return;
         }
 
         ForecastModel::create([
