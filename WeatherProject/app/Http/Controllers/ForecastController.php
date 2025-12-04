@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ForecastModel;
+use App\Models\WeatherModel;
 use Illuminate\Http\Request;
 
 class ForecastController extends Controller
@@ -14,7 +14,7 @@ class ForecastController extends Controller
             'temperature' => "required|integer",
         ]);
 
-        ForecastModel::create
+        WeatherModel::create
         ([
             'city' => $request->get('city'),
             'temperature' => $request->get('temperature'),
@@ -25,16 +25,16 @@ class ForecastController extends Controller
 
     public function getAllData()
     {
-        $allData = ForecastModel::all();
+        $allData = WeatherModel::all();
         return view('AllData', compact('allData'));
     }
 
-    public function SingleData(Request $request, ForecastModel $data)
+    public function SingleData(Request $request, WeatherModel $data)
     {
         return view('EditData', compact('data'));
     }
 
-    public function updateData(Request $request, ForecastModel $data)
+    public function updateData(Request $request, WeatherModel $data)
     {
         $data -> city = $request->get('city');
         $data -> temperature = $request->get('temperature');
@@ -44,7 +44,7 @@ class ForecastController extends Controller
         return redirect()->route('AllData');
     }
 
-    public function deleteData(ForecastModel $data)
+    public function deleteData(WeatherModel $data)
     {
         $data -> delete();
 

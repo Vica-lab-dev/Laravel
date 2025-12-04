@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forecasts_live', function (Blueprint $table) {
+        Schema::create('forecasts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('city_id');
             $table->float('temperature');

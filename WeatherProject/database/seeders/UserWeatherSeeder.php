@@ -3,7 +3,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ForecastModel;
+use App\Models\WeatherModel;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,7 +25,7 @@ class UserWeatherSeeder extends Seeder
             $this->command->getOutput()->error("You did not specify a temperature!");
         }
 
-        ForecastModel::create([
+        WeatherModel::create([
             'city' => $city,
             'temperature' => $temperature,
         ]);
