@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CitiesModel;
+use App\Models\ForecastsModel;
 use App\Models\WeatherModel;
 use Illuminate\Http\Request;
 
@@ -51,27 +53,10 @@ class ForecastController extends Controller
         return redirect()->route('AllData');
     }
 
-    public function getForecastData($city)
+    public function getForecastData(CitiesModel $city)
     {
-        $temperature =
-            [
-            'beograd' => [19,  24, 38, 47, 5],
-            'kragujevac' => [23, 25, 26, 8, 7],
-            'cacak' => [19, 18, 8, 4, 5],
-            'subotica' => [8,6,4,7,5],
-            'nis' => [5,7,3,6,8],
-            'jagodina' => [28, 16, 37, 4, 7],
-            ];
-
-        $city = strtolower($city);
-
-        if(!array_key_exists($city, $temperature))
-        {
-            die("City not exists!");
-        }
-
-
-        dd($temperature[$city]);
+        $forecasts = ForecastsModel::where(['city_id'=>$city->id])->first();
+        return view('ForecastData', compact('forecasts'));
     }
 
 

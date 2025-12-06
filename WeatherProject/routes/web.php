@@ -32,4 +32,5 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("/deleteData/{data}", [ForecastController::class, 'deleteData'])->name('deleteData');
 });
 
-    Route::get('/forecast/{city}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
+    Route::get('/forecast/{city:name}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
+
