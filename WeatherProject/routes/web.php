@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,12 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     Route::view("/weather", 'admin.weather_index');
 
-    Route::post('/weather/update', [\App\Http\Controllers\AdminWeatherController::class, 'update'])->name('weather.update');
+    Route::post('/weather/update', [AdminWeatherController::class, 'update'])->name('weather.update');
+
+    Route::view('/forecasts', 'admin.forecastsCity');
+
+    Route::post('/forecasts/update', [AdminWeatherController::class, 'forecastUpdate'])
+        ->name('forecasts.update');
 });
 
     Route::get('/forecast/{city:name}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
