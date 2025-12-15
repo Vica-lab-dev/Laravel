@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\CitiesModel;
-use App\Models\WeatherModel;
 use App\Models\ForecastsModel;
-use Faker\Factory;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,20 +16,26 @@ class ForecastsSeeder extends Seeder
     public function run(): void
     {
         $cities = CitiesModel::all();
-
         foreach ($cities as $city)
         {
-            $userWeather = WeatherModel::where('city_id', $city->id)->first();
-            if ($userWeather !== null)
+            for($i = 0; $i < 5; $i++)
             {
-                $this->command->error("This city already exists");
-                continue;
-            }
+                $weatherType = ForecastsModel::WEATHERS[rand(0, 2)];
 
-            WeatherModel::create([
-                'city_id' => $city->id,
-                "temperature" => rand(15, 30)
-            ]);
+                $probability = null;
+
+                if($weatherType == 'rainy' || $weatherType == 'snowy')
+                {
+                    $probability = rand(1, 100);
+                }
+                ForecastsModel::create([
+                    'city_id' => $city->id,
+                    'temperature' => rand(15, 30),
+                    'forecast_date' => Carbon::now()->addDays(rand(1, 30)),
+                    'weather_type' => $weatherType,
+                    'probability' => $probability,
+                ]);
+            }
         }
     }
 }
