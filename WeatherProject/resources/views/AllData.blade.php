@@ -11,11 +11,12 @@
 
     </tr>
     </thead>
-    @foreach($allData as $data)
+
     <tbody>
+    @foreach($allData as $data)
     <tr>
         <th scope="row">{{ $data->id }}</th>
-        <td>{{ $data->city }}</td>
+        <td>{{ $data->city->name }}</td>
         <td>{{ $data->temperature }}°C</td>
         <td>
             <a href="{{ route('ForecastData',['city' => $data->id]) }}" class="btn btn-primary">View</a>
@@ -23,8 +24,8 @@
             <a href="{{route("deleteData", ["data" => $data->id])}}" class="btn btn-danger">Delete</a>
         </td>
     </tr>
-
+    @endforeach
 
     </tbody>
-    @endforeach
+
 </table>
