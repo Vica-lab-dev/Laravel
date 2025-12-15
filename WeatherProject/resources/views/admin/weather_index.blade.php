@@ -1,4 +1,6 @@
-<form action="">
+<form method="POST" action="{{ route ('weather.update') }}">
+
+    {{csrf_field()}}
     <input type="text" name="temperature" placeholder="Enter temperature">
     <select name="city_id">
         @foreach(\App\Models\CitiesModel::all() as $city)
