@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http;
+use App\Models\ForecastsModel;
 
 class ForecastHelper
 {
@@ -9,8 +10,10 @@ class ForecastHelper
         [
             "rainy" => "fa-cloud-rain",
             "snowy" => "fa-snowflake",
-            "sunny" => "fa-sun"
+            "sunny" => "fa-sun",
+            "cloudy" => "fa-cloud"
         ];
+
     public static function getIconByWeatherType($type)
     {
         $icon = self::WEATHER_ICONS[$type];
@@ -18,26 +21,19 @@ class ForecastHelper
         return $icon;
 
     }
+
     public static function getColorByTemperature($temperature)
     {
-        if($temperature <= 0)
-        {
+        if ($temperature <= 0) {
             $color = 'lightblue';
-        }
-        else if($temperature >= 1 && $temperature <= 15)
-        {
+        } else if ($temperature >= 1 && $temperature <= 15) {
             $color = 'blue';
-        }
-        else if($temperature > 15 && $temperature <= 25)
-        {
+        } else if ($temperature > 15 && $temperature <= 25) {
             $color = 'green';
-        }
-        else
-        {
+        } else {
             $color = 'red';
         }
 
         return $color;
     }
-
 }
