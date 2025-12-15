@@ -55,8 +55,7 @@ class ForecastController extends Controller
 
     public function getForecastData(CitiesModel $city)
     {
-        $forecasts = ForecastsModel::where(['city_id'=>$city->id])->first();
-        return view('ForecastData', compact('forecasts'));
+        return view('ForecastData', compact('city'));
     }
 
 
