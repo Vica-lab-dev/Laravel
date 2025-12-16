@@ -16,7 +16,7 @@ class AdminWeatherController extends Controller
            'city_id' => 'required|exists:cities,id',
        ]);
 
-       $weather = WeatherModel::where(['city_id' => $request->get('city_id')])->first();
+       $weather = WeatherModel::with('city')->where(['city_id' => $request->get('city_id')])->first();
        $weather->temperature = $request->get('temperature');
        $weather->save();
 
