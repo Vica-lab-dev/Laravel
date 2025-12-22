@@ -3,10 +3,25 @@
 use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserCities;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('welcome');
+    $userFavourites = [];
+
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if($user !== null)
+    {
+        $userFavourites = \App\Models\UserCities::where
+        ([
+            'user_id' => $user->id
+        ])->get();
+    }
+    return view('welcome', compact('userFavourites'));
+
 });
 
 Route::get('/dashboard', function () {
@@ -21,7 +36,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth')->prefix("admin")->group(function () {
+Route::middleware(AdminCheckMiddleware::class)->prefix("admin")->group(function () {
     Route::post('/AddForecastData', [ForecastController::class, 'AddData'])->name('SaveData');
     Route::get('/AllForecastData', [ForecastController::class, 'getAllData'])->name('AllData');
 
@@ -40,7 +55,23 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     Route::post('/forecasts/update', [AdminWeatherController::class, 'forecastUpdate'])
         ->name('forecasts.update');
+
+    Route::get('/forecasts/delete{city}', [UserCities::class, 'delete'])->name('forecasts.delete');
+
+    Route::get('/forecasts/favourited/{city}', [ForecastController::class, 'data'])->name('forecasts.single');
+
+
+
 });
+    Route::get('/forecast/search', [ForecastController::class, 'search'])->name('forecast.search');
+
+    Route::get('/forecast/city/{city:id}', [ForecastController::class, 'index'])->name('forecast.permalink');
 
     Route::get('/forecast/{city:name}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
+
+    /**
+     * User cities
+     */
+    Route::get('/user-cities/favourite/{city}', [UserCities::class, 'favourite'])
+        ->name('city.favourite');
 
