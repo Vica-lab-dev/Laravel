@@ -44,7 +44,7 @@ class ForecastsSeeder extends Seeder
 
                     switch($weatherType)
                     {
-                        case 'rainy':
+                        case 'sunny':
                             $temperature = rand(-30, 50);
                             break;
 
