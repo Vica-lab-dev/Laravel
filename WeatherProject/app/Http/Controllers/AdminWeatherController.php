@@ -46,4 +46,5 @@ class AdminWeatherController extends Controller
 
         return redirect()->back();
     }
+
 }
