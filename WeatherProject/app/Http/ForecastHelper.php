@@ -5,7 +5,15 @@ use App\Models\ForecastsModel;
 
 class ForecastHelper
 {
+    const PROBABILITY_ICONS = 'fa-droplet';
 
+
+    public static function getProbabilityIcon($probability)
+    {
+        if ($probability !== null) {
+            return self::PROBABILITY_ICONS;
+        }
+    }
     const WEATHER_ICONS =
         [
             "rainy" => "fa-cloud-rain",
