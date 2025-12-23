@@ -11,10 +11,12 @@
                 @php
                     $color = \App\Http\ForecastHelper::getColorByTemperature($userFavourite->userCity->todaysForecast->temperature);
                     $icon = \App\Http\ForecastHelper::getIconByWeatherType($userFavourite->userCity->todaysForecast->weather_type);
+                    $probability = \App\Http\ForecastHelper::getProbabilityIcon($userFavourite->userCity->todaysForecast->probability);
                 @endphp
               <div class="bg-dark p-3 text-white">
                   <p class="m-0">{{ $userFavourite->userCity->name }}</p>
                   <i class="fa-solid {{ $icon }}"></i><span>{{ $userFavourite->userCity->todaysForecast->temperature }}</span>
+                  <i class="fa-solid {{ $probability }}"></i><span>{{ $userFavourite->userCity->todaysForecast->probability }}</span>
               </div>
 
             @endforeach
