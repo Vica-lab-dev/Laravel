@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\CitiesModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -26,9 +27,16 @@ class TestCommand extends Command
      */
     public function handle()
     {
+        $city = $this->argument('city');
+        $dbCity = CitiesModel::where(['name' => $city])->first();
+        if($dbCity === null)
+        {
+            $dbCity = CitiesModel::create(['name' => $city]);
+        }
+
         $response = Http::get(env("WEATHER_API_URL")."v1/forecast.json", [
             'key' => env("WEATHER_API_KEY"),
-            'q' => $this->argument('city'),
+            'q' => $city,
             'aqi' => "no",
         ]);
 
@@ -38,7 +46,7 @@ class TestCommand extends Command
             $this->output->error($jsonResponse['error']['message']);
         }
 
-        dd($jsonResponse);
+
     }
 }
 
