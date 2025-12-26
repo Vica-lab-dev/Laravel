@@ -47,6 +47,11 @@ class TestCommand extends Command
             $this->output->error($jsonResponse['error']['message']);
         }
 
+        if($dbCity->todaysForecast !== null)
+        {
+            $this->output->comment('Command finished');
+            return;
+        }
 
         $forecast_date = $jsonResponse['forecast']['forecastday'][0]['date'];
         $temperature = $jsonResponse['forecast']['forecastday'][0]['day']['avgtemp_c'];
@@ -63,6 +68,7 @@ class TestCommand extends Command
         ];
 
         ForecastsModel::create($forecast);
+        $this->output->comment('Added forecast');
     }
 }
 
