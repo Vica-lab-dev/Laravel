@@ -12,7 +12,7 @@ class TestCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:test-command';
+    protected $signature = 'app:test-command {city}';
 
     /**
      * The console command description.
@@ -26,9 +26,11 @@ class TestCommand extends Command
      */
     public function handle()
     {
+        $city = $this->argument('city');
+
         $response = Http::get("https://api.weatherapi.com/v1/current.json", [
             'key' => "c75cacc81cad4b86a99125310252212",
-            'q' => "London",
+            'q' => "$city",
             'aqi' => "no"
         ]);
         dd($response->body());
