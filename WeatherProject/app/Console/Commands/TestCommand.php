@@ -26,14 +26,12 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $city = $this->argument('city');
-
-        $response = Http::get("https://api.weatherapi.com/v1/current.json", [
-            'key' => "c75cacc81cad4b86a99125310252212",
-            'q' => "$city",
+        $response = Http::get(env("WEATHER_API_URL")."v1/forecast.json", [
+            'key' => env("WEATHER_API_KEY"),
+            'q' => $this->argument('city'),
             'aqi' => "no",
-            'lang' => "sr",
         ]);
+
         $jsonResponse = $response->json();
         if(isset($jsonResponse['error']))
         {
