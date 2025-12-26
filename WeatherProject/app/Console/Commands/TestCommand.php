@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\CitiesModel;
+use App\Models\ForecastsModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -47,6 +48,21 @@ class TestCommand extends Command
         }
 
 
+        $forecast_date = $jsonResponse['forecast']['forecastday'][0]['date'];
+        $temperature = $jsonResponse['forecast']['forecastday'][0]['day']['avgtemp_c'];
+        $weather_type = $jsonResponse['forecast']['forecastday'][0]['day']['condition']['text'];
+        $probability = $jsonResponse['forecast']['forecastday'][0]['day']['daily_chance_of_rain'];
+
+        $forecast =
+            [
+                "city_id" => $dbCity->id,
+                "temperature" => $temperature,
+                "forecast_date" => $forecast_date,
+                "weather_type" => strtolower($weather_type),
+                "probability" => $probability,
+        ];
+
+        ForecastsModel::create($forecast);
     }
 }
 
