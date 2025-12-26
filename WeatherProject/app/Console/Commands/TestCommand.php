@@ -31,9 +31,16 @@ class TestCommand extends Command
         $response = Http::get("https://api.weatherapi.com/v1/current.json", [
             'key' => "c75cacc81cad4b86a99125310252212",
             'q' => "$city",
-            'aqi' => "no"
+            'aqi' => "no",
+            'lang' => "sr",
         ]);
-        dd($response->body());
+        $jsonResponse = $response->json();
+        if(isset($jsonResponse['error']))
+        {
+            $this->output->error($jsonResponse['error']['message']);
+        }
+
+        dd($jsonResponse);
     }
 }
 
