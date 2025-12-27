@@ -65,7 +65,7 @@ Route::middleware(AdminCheckMiddleware::class)->prefix("admin")->group(function 
 });
     Route::get('/forecast/search', [ForecastController::class, 'search'])->name('forecast.search');
 
-    Route::get('/forecast/city/{city:id}', [ForecastController::class, 'index'])->name('forecast.permalink');
+    Route::get('/forecast/city/{city:name}', [ForecastController::class, 'index'])->name('forecast.permalink');
 
     Route::get('/forecast/{city:name}',[ForecastController::class, 'getForecastData'])->name('ForecastData');
 
