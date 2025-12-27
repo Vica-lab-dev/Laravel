@@ -14,6 +14,7 @@ class ForecastHelper
             return self::PROBABILITY_ICONS;
         }
     }
+
     const WEATHER_ICONS =
         [
             "rainy" => "fa-cloud-rain",
@@ -25,7 +26,7 @@ class ForecastHelper
     public static function getIconByWeatherType($type)
     {
 
-        if(in_array($type, self::WEATHER_ICONS))
+        if(array_key_exists($type, self::WEATHER_ICONS))
         {
             return self::WEATHER_ICONS[$type];
         }
