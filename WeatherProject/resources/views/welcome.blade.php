@@ -9,14 +9,16 @@
             @foreach($userFavourites as $userFavourite)
 
                 @php
-                    $color = \App\Http\ForecastHelper::getColorByTemperature($userFavourite->userCity->todaysForecast->temperature);
-                    $icon = \App\Http\ForecastHelper::getIconByWeatherType($userFavourite->userCity->todaysForecast->weather_type);
-                    $probability = \App\Http\ForecastHelper::getProbabilityIcon($userFavourite->userCity->todaysForecast->probability);
+                    $color = \App\Http\ForecastHelper::getColorByTemperature($userFavourite->userCity->todaysForecast?->temperature);
+                    $icon = \App\Http\ForecastHelper::getIconByWeatherType($userFavourite->userCity->todaysForecast?->weather_type);
+                    $probability = \App\Http\ForecastHelper::getProbabilityIcon($userFavourite->userCity->todaysForecast?->probability);
                 @endphp
               <div class="bg-dark p-3 text-white">
                   <p class="m-0">{{ $userFavourite->userCity->name }}</p>
-                  <i class="fa-solid {{ $icon }}"></i><span>{{ $userFavourite->userCity->todaysForecast->temperature }}</span>
-                  <i class="fa-solid {{ $probability }}"></i><span>{{ $userFavourite->userCity->todaysForecast->probability }}</span>
+                  <i class="fa-solid {{ $icon }}"></i><span>{{ $userFavourite->userCity->todaysForecast?->temperature }}°C</span>
+                  @if($probability !== null)
+                        <i class="fa-solid {{ $probability }}"></i><span>{{ $userFavourite->userCity->todaysForecast?->probability}}%</span>
+                  @endif
               </div>
 
             @endforeach
