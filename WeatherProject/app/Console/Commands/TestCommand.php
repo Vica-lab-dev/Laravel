@@ -53,10 +53,12 @@ class TestCommand extends Command
             return;
         }
 
-        $forecast_date = $jsonResponse['forecast']['forecastday'][0]['date'];
-        $temperature = $jsonResponse['forecast']['forecastday'][0]['day']['avgtemp_c'];
-        $weather_type = $jsonResponse['forecast']['forecastday'][0]['day']['condition']['text'];
-        $probability = $jsonResponse['forecast']['forecastday'][0]['day']['daily_chance_of_rain'];
+        $forecastDay = $jsonResponse['forecast']['forecastday'][0];
+
+        $forecast_date = $forecastDay['date'];
+        $temperature = $forecastDay['day']['avgtemp_c'];
+        $weather_type = $forecastDay['day']['condition']['text'];
+        $probability = $forecastDay['day']['daily_chance_of_rain'];
 
         $forecast =
             [
@@ -72,4 +74,3 @@ class TestCommand extends Command
     }
 }
 
-//c75cacc81cad4b86a99125310252212
