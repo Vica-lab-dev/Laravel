@@ -2,40 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveProductRequest;
 use App\Models\ProductsModel;
+use App\Repositories\ProductRepository;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo = new ProductRepository();
+    }
     public function getAllProducts()
     {
         $allProducts = ProductsModel::all();
         return view("products", compact("allProducts"));
     }
 
-    public function AddProducts(Request $request)
+    public function AddProducts(SaveProductRequest $request)
     {
-        $request->validate
-        ([
-            "name" => "required|string|unique:products",
-            "description" => "required|string",
-            "amount" => "required|integer",
-            "price" => "required|integer",
-            "image" => "required|string",
-        ]);
-
-        ProductsModel::create
-        ([
-            "name" => $request->get("name"),
-            "description" => $request->get("description"),
-            "amount" => $request->get("amount"),
-            "price" => $request->get("price"),
-            "image" => $request->get("image"),
-        ]);
-
+        $this->productRepo->createNew($request);
         return redirect()->route("allProducts");
-
-
     }
 
     public function index()
@@ -46,7 +38,7 @@ class ProductsController extends Controller
 
     public function delete($product)
     {
-        $singleProduct = ProductsModel::where(['id' => $product])->first();
+        $singleProduct = $this->productRepo->getProductByID($product);
 
         if ($singleProduct === null)
         {
@@ -67,16 +59,8 @@ class ProductsController extends Controller
 
     public function update(Request $request, ProductsModel $product)
     {
-
-
-        $product->name = $request->get("name");
-        $product->description = $request->get("description");
-        $product->amount = $request->get("amount");
-        $product->price = $request->get("price");
-
-        $product->save();
+        $this->productRepo->updateProduct($request, $product);
 
         return redirect()->route("allProducts");
-
     }
 }
