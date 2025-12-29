@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ExchangeRates;
+use Carbon\Carbon;
 use CurrencyApi\CurrencyApi\CurrencyApiClient;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -27,9 +29,26 @@ class RatesCommand extends Command
      */
     public function handle()
     {
+        $currencies = ['usd', 'eur', 'rub'];
 
-        $response = Http::get("https://kurs.resenje.org/api/v1/currencies/eur/rates/today");
-        dd($response->json()['exchange_middle']);
+
+        foreach (ExchangeRates::AVAILABLE_CURRENCIES as $currency)
+        {
+            $todayCurrency = ExchangeRates::getCurrencyForToday($currency);
+
+            if($todayCurrency !== null)
+            {
+                continue;
+            }
+
+            $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
+            ExchangeRates::create([
+                'currency' => $currency,
+                'value' => $response->json()['exchange_middle']
+
+            ]);
+
+        }
 
     }
 }
