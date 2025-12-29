@@ -49,7 +49,7 @@ Route::view("/layout", "layout");
 //Route::view("/editProduct", "products");
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function() {
-
+    Route::post('AddedContact', [ContactController::class, 'sendContact'])->name('contact.added');
     Route::get("/all-contacts", [ContactController::class, "getAllContacts"])->name("allContacts");
     Route::post("/add-products/save", [ProductsController::class, "AddProducts"])->name("saveProducts");
     Route::get("/editProduct", [ProductsController::class, "getAllProducts"]);
