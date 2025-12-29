@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\ContactModel;
+use App\Repositories\ContactRepository;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    private $contactRepo;
+
+    public function __construct()
+    {
+        $this->contactRepo = new ContactRepository();
+    }
+
     public function index()
     {
         return view("contact");
@@ -18,31 +27,16 @@ class ContactController extends Controller
         return view("allContacts", compact("allContacts"));
     }
 
-    public function sendContact(Request $request)
+    public function sendContact(ContactRequest $request)
     {
-        $request->validate
-        ([
-            "email" => "required|string",
-            "subject" => "required|string",
-            "description" => "required|string|min:5|max:255"
-        ]);
-
-        //echo "Email: ".$request->get("email")." Title: ".$request->get("subject")." Description: ".$request->get("description");
-
-        ContactModel::create
-        ([
-            "email" => $request->get("email"),
-            "subject" => $request->get("subject"),
-            "message" => $request->get("description")
-        ]);
-
+        $this->contactRepo->createNew($request);
         return redirect("/shop");
 
     }
 
-    public function delete($contact)
+    public function delete($id)
     {
-        $singleContact = ContactModel::where("id", $contact)->first();
+        $singleContact = $this->contactRepo->delete($id);
 
         if($singleContact === null)
         {
@@ -61,12 +55,7 @@ class ContactController extends Controller
 
     public function update(Request $request, ContactModel $contact)
     {
-
-        $contact -> email = $request->get("email");
-        $contact -> subject = $request->get("subject");
-        $contact -> message = $request->get("message");
-
-        $contact->save();
+        $this->contactRepo->update($request, $contact);
 
         return redirect()->route("allContacts");
     }
