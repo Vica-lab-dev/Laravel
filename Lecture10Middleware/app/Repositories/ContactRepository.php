@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\ContactModel;
+
+class ContactRepository
+{
+    private $contactModel;
+
+    public function __construct()
+    {
+        $this->contactModel = new ContactModel();
+    }
+    public function createNew($request)
+    {
+        $this->contactModel->create([
+            "email" => $request->get("email"),
+            "subject" => $request->get("subject"),
+            "message" => $request->get("description")
+        ]);
+    }
+
+    public function delete($id)
+    {
+        return $this->contactModel->where("id", $id)->first();
+    }
+
+    public function update($request, $contact)
+    {
+        $contact -> email = $request->get("email");
+        $contact -> subject = $request->get("subject");
+        $contact -> message = $request->get("message");
+        $contact->save();
+
+    }
+}
