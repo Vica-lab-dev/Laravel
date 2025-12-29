@@ -27,15 +27,9 @@ class RatesCommand extends Command
      */
     public function handle()
     {
-        $response = Http::get(env("API_RATES_URL")."v3/latest?", [
-            'apikey' => env("API_RATES_KEY"),
-            'base_currency' => 'RSD',
-        ]);
 
-        $jsonResponse = $response->json();
+        $response = Http::get("https://kurs.resenje.org/api/v1/currencies/eur/rates/today");
+        dd($response->json()['exchange_middle']);
 
-        $eur = $jsonResponse['data']['EUR'];
-        $dollar = $jsonResponse['data']['USD'];
-        dd($dollar, $eur);
     }
 }
