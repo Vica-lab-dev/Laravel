@@ -46,13 +46,13 @@ Route::view("/footer", "footer");
 
 Route::view("/layout", "layout");
 
-Route::view("/editProduct", "products");
+//Route::view("/editProduct", "products");
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function() {
 
     Route::get("/all-contacts", [ContactController::class, "getAllContacts"])->name("allContacts");
     Route::post("/add-products/save", [ProductsController::class, "AddProducts"])->name("saveProducts");
-    Route::get("/products", [ProductsController::class, "getAllProducts"]);
+    Route::get("/editProduct", [ProductsController::class, "getAllProducts"]);
     Route::get("/all-products", [ProductsController::class, "index"])->name("allProducts");
     Route::get("/delete-product/{product}", [ProductsController::class, "delete"])->name("deleteProduct");
     Route::get("/delete-contact/{contact}", [ContactController::class, "delete"])->name("deleteContact");
@@ -60,10 +60,10 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group
     Route::post("/updated-product/{product}", [ProductsController::class, "update"])->name("updateProduct");
     Route::get("/contact/edit/{contact}", [ContactController::class, "singleContact"])->name("editContact");
     Route::post("/updated-contact/{contact}", [ContactController::class, "update"])->name("updateContact");
-
+    Route::view("/addProduct", "addProduct");
 });
 
 
 
 
-Route::view("/addProduct", "addProduct");
+
