@@ -47,26 +47,29 @@ Route::view("/layout", "layout");
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function() {
 
-    Route::controller(ProductsController::class)->group(function(){
-       Route::post("/product/add/save", "AddProducts")->name("saveProducts");
-       Route::get("/product/edit", "getAllProducts");
-       Route::get("/product/all", "index")->name("allProducts");
-       Route::get("/product/delete/{product}", "delete")->name("deleteProduct");
-       Route::get("/product/edit/{product}", "singleProduct")->name("editProduct");
-       Route::post("/product/updated-/{product}", "update")->name("updateProduct");
+    Route::controller(ProductsController::class)->group(function () {
+        Route::post("/product/add/save", "AddProducts")->name("saveProducts");
+        Route::get("/product/edit", "getAllProducts");
+        Route::get("/product/all", "index")->name("allProducts");
+        Route::get("/product/delete/{product}", "delete")->name("deleteProduct");
+        Route::get("/product/edit/{product}", "singleProduct")->name("editProduct");
+        Route::post("/product/updated-/{product}", "update")->name("updateProduct");
     });
 
 
-    Route::controller(ContactController::class)->group(function() {
-        Route::get("/contact/added", "sendContact")->name('contact.added');
-        Route::get("/contact/all", "getAllConacts")->name('allContacts');
-        Route::get("/contact/delete-/{contact}", "delete")->name('deleteContact');
-        Route::get("/contact//edit/{contact}", "singleContact")->name('editContact');
-        Route::post("/contact/updated-/{contact}", "update")->name('updateContact');
+
+
+        Route::controller(ContactController::class)->prefix("/contact")->group(function () {
+            Route::get("/added", "sendContact")->name('contact.added');
+            Route::get("/all", "getAllContacts")->name('allContacts');
+            Route::get("/delete/{contact}", "delete")->name('deleteContact');
+            Route::get("/edit/{contact}", "singleContact")->name('editContact');
+            Route::post("/updated-/{contact}", "update")->name('updateContact');
+        });
+
+        Route::view("/addProduct", "addProduct");
     });
 
-    Route::view("/addProduct", "addProduct");
-});
 
 
 
