@@ -47,13 +47,13 @@ Route::view("/layout", "layout");
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function() {
 
-    Route::controller(ProductsController::class)->group(function () {
-        Route::post("/product/add/save", "AddProducts")->name("saveProducts");
-        Route::get("/product/edit", "getAllProducts");
-        Route::get("/product/all", "index")->name("allProducts");
-        Route::get("/product/delete/{product}", "delete")->name("deleteProduct");
-        Route::get("/product/edit/{product}", "singleProduct")->name("editProduct");
-        Route::post("/product/updated-/{product}", "update")->name("updateProduct");
+    Route::controller(ProductsController::class)->prefix("/product")->group(function () {
+        Route::post("/save", "AddProducts")->name("saveProducts");
+        Route::get("/edit", "getAllProducts");
+        Route::get("/all", "index")->name("allProducts");
+        Route::get("/delete/{product}", "delete")->name("deleteProduct");
+        Route::get("/edit/{product}", "singleProduct")->name("editProduct");
+        Route::post("/updated/{product}", "update")->name("updateProduct");
     });
 
 
