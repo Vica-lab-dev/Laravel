@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\ProductsModel;
 use App\Repositories\ProductRepository;
@@ -35,21 +36,20 @@ class ProductsController extends Controller
 
     public function delete(ProductsModel $product)
     {
-        $singleProduct = $this->productRepo->getProductByID($product);
 
-        $singleProduct->delete();
+        $product->delete();
 
         return redirect()->back();
     }
 
-    public function singleProduct(Request $request, ProductsModel $product)
+    public function singleProduct(ProductsModel $product)
     {
 
         return view("products/editProduct", compact("product"));
 
     }
 
-    public function update(Request $request, ProductsModel $product)
+    public function update(EditProductRequest $request, ProductsModel $product)
     {
         $this->productRepo->updateProduct($request, $product);
 
