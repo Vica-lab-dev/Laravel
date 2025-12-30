@@ -34,14 +34,10 @@ class ContactController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete(ContactModel $contact)
     {
-        $singleContact = $this->contactRepo->delete($id);
+        $singleContact = $this->contactRepo->delete($contact);
 
-        if($singleContact === null)
-        {
-            die("Product not found");
-        }
 
         $singleContact->delete();
 

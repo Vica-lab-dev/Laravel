@@ -21,9 +21,9 @@ class ContactRepository
         ]);
     }
 
-    public function delete($id)
+    public function delete($contact)
     {
-        return $this->contactModel->where("id", $id)->first();
+        return $this->contactModel->where("id", $contact)->first();
     }
 
     public function update($request, $contact)
