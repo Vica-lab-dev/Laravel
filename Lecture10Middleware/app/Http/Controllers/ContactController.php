@@ -36,10 +36,7 @@ class ContactController extends Controller
 
     public function delete(ContactModel $contact)
     {
-        $singleContact = $this->contactRepo->delete($contact);
-
-
-        $singleContact->delete();
+        $contact->delete();
 
         return redirect()->back();
     }
