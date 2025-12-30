@@ -1,8 +1,9 @@
+@php use App\Http\ForecastHelper; @endphp
 @extends("admin.layout")
 
 @section("content")
 
-    <form method="POST" action="{{ route('forecasts.update') }}" >
+    <form method="POST" action="{{ route('forecasts.update') }}">
         {{ csrf_field() }}
         <div>
             <select name="city_id" class="form-select">
@@ -49,8 +50,8 @@
                     @foreach($city->forecasts as $forecast)
 
                         @php
-                            $color = \App\Http\ForecastHelper::getColorByTemperature($forecast->temperature);
-                            $icon = \App\Http\ForecastHelper::getIconByWeatherType($forecast->weather_type);
+                            $color = ForecastHelper::getColorByTemperature($forecast->temperature);
+                            $icon = ForecastHelper::getIconByWeatherType($forecast->weather_type);
                         @endphp
 
                         <li class="list-group-item">{{ $forecast->forecast_date }} -
