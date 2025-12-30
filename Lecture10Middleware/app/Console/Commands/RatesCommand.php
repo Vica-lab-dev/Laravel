@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\ExchangeRates;
-use Carbon\Carbon;
-use CurrencyApi\CurrencyApi\CurrencyApiClient;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 

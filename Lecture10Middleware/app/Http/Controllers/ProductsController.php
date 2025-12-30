@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\ProductsModel;
 use App\Repositories\ProductRepository;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -36,14 +33,9 @@ class ProductsController extends Controller
         return view("allProducts", compact("allProducts"));
     }
 
-    public function delete($product)
+    public function delete(ProductsModel $product)
     {
         $singleProduct = $this->productRepo->getProductByID($product);
-
-        if ($singleProduct === null)
-        {
-            die("Product not found");
-        }
 
         $singleProduct->delete();
 

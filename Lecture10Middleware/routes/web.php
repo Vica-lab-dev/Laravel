@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +23,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ShopController;
-
 
 
 Route::get("/about", function () {
