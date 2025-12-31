@@ -3,7 +3,7 @@
 @section("PageContent")
 
     <div>
-        <form action="{{ route('updateProduct', ['product'=> $product->id]) }}" method="POST">
+        <form action="{{ route('product.update', ['product'=> $product->id]) }}" method="POST">
             {{ csrf_field() }}
             <label for="name">Name:</label>
             <input type="text" name="name"  value="{{ $product->name }}">

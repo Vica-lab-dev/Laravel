@@ -25,7 +25,7 @@ class ProductsController extends Controller
     public function AddProducts(SaveProductRequest $request)
     {
         $this->productRepo->createNew($request);
-        return redirect()->route("allProducts");
+        return redirect()->route("product.all");
     }
 
     public function index()
@@ -53,6 +53,6 @@ class ProductsController extends Controller
     {
         $this->productRepo->updateProduct($request, $product);
 
-        return redirect()->route("allProducts");
+        return redirect()->route("product.all");
     }
 }

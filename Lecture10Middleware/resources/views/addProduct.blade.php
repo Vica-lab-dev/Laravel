@@ -8,7 +8,7 @@
     @endsection
 @section("Add")
     <div>
-        <form class="Center" action="{{ route("saveProducts") }}" method="POST">
+        <form class="Center" action="{{ route("product.save") }}" method="POST">
 
 
 
