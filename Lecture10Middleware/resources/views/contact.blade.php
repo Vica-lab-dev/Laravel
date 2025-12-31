@@ -8,10 +8,11 @@
 
 @section("form")
     <div>
-        <form class="Center marginTop marginBottom">
+        <form class="Center marginTop marginBottom" method="POST" action="{{ route('contact.saved') }}">
+            {{ csrf_field() }}
             <input type="email" name="email" placeholder="Enter your email">
             <input type="text" name="subject" placeholder="Subject">
-            <input type="text" name="message" placeholder="Enter you message">
+            <input type="text" name="description" placeholder="Enter you message">
             <button>Send</button>
         </form>
     </div>
