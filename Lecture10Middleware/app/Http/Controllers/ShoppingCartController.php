@@ -11,8 +11,17 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
+        $allProducts = [];
+
+        foreach (Session::get('product') as $cartItem)
+        {
+            $allProducts[] = $cartItem['product_id'];
+        }
+        $products = ProductsModel::whereIn('id', $allProducts)->get();
+
         return view('cart', [
-            'cart' => Session::get('product', [])
+            'cart' => Session::get('product'),
+            'products' => $products,
         ]);
 
     }
