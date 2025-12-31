@@ -45,9 +45,9 @@ Route::view("/layout", "layout");
 
 //Route::view("/editProduct", "products");
 
-Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->name("product.")->group(function() {
+Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function() {
 
-    Route::controller(ProductsController::class)->prefix("product")->group(function () {
+    Route::controller(ProductsController::class)->prefix("product")->name("product.")->group(function () {
         Route::post("/save", "AddProducts")->name("save");
         Route::get("/edit", "getAllProducts");
         Route::get("/all", "index")->name("all");
@@ -59,12 +59,12 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->name(
 
 
 
-        Route::controller(ContactController::class)->prefix("contact")->group(function () {
-            Route::get("/added", "sendContact")->name('contact.added');
-            Route::get("/all", "getAllContacts")->name('allContacts');
-            Route::get("/delete/{contact}", "delete")->name('deleteContact');
-            Route::get("/edit/{contact}", "singleContact")->name('editContact');
-            Route::post("/updated-/{contact}", "update")->name('updateContact');
+        Route::controller(ContactController::class)->prefix("contact")->name("contact.")->group(function () {
+            Route::post("/saved", "sendContact")->name('saved');
+            Route::get("/all", "getAllContacts")->name('all');
+            Route::get("/delete/{contact}", "delete")->name('delete');
+            Route::get("/edit/{contact}", "singleContact")->name('edit');
+            Route::post("/updated-/{contact}", "update")->name('update');
         });
 
         Route::view("/addProduct", "addProduct");

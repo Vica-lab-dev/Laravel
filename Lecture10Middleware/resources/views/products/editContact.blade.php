@@ -4,7 +4,7 @@
 
 @section("PageContent")
     <div class="Center">
-        <form action="{{ route("updateContact", ['contact' => $contact->id]) }}" method="POST">
+        <form action="{{ route("contact.update", ['contact' => $contact->id]) }}" method="POST">
 
             {{ csrf_field() }}
             <label for="">Email</label>

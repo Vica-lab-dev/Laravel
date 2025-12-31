@@ -50,6 +50,6 @@ class ContactController extends Controller
     {
         $this->contactRepo->update($request, $contact);
 
-        return redirect()->route("allContacts");
+        return redirect()->route("contact.all");
     }
 }
