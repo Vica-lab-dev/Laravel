@@ -31,7 +31,7 @@ class TestCommand extends Command
     {
         $city = $this->argument('city');
         $dbCity = CitiesModel::where(['name' => $city])->first();
-        if($dbCity === null)
+        if ($dbCity === null)
         {
             $dbCity = CitiesModel::create(['name' => $city]);
         }
@@ -53,22 +53,29 @@ class TestCommand extends Command
 
         $forecastDay = $jsonResponse['forecast']['forecastday'][0];
 
-        $forecast_date = $forecastDay['date'];
-        $temperature = $forecastDay['day']['avgtemp_c'];
-        $weather_type = $forecastDay['day']['condition']['text'];
-        $probability = $forecastDay['day']['daily_chance_of_rain'];
+        try
+        {
+            $forecast_date = $forecastDay['date'];
+            $temperature = $forecastDay['day']['avgtemp_c'];
+            $weather_type = $forecastDay['day']['condition']['text'];
+            $probability = $forecastDay['day']['daily_chance_of_rain'];
 
-        $forecast =
-            [
-                "city_id" => $dbCity->id,
-                "temperature" => $temperature,
-                "forecast_date" => $forecast_date,
-                "weather_type" => strtolower($weather_type),
-                "probability" => $probability,
-        ];
+            $forecast =
+                [
+                    "city_id" => $dbCity->id,
+                    "temperature" => $temperature,
+                    "forecast_date" => $forecast_date,
+                    "weather_type" => strtolower($weather_type),
+                    "probability" => $probability,
+                ];
 
-        ForecastsModel::create($forecast);
-        $this->output->comment('Added forecast');
+            ForecastsModel::create($forecast);
+            $this->output->comment('Added forecast');
+        }
+    catch (\Exception $e)
+        {
+            $this->output->error('Something went wrong' . $e->getMessage());
+        }
     }
 }
 
