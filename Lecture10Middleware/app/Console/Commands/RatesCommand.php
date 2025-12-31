@@ -32,19 +32,27 @@ class RatesCommand extends Command
 
         foreach (ExchangeRates::AVAILABLE_CURRENCIES as $currency)
         {
-            $todayCurrency = ExchangeRates::getCurrencyForToday($currency);
+                $todayCurrency = ExchangeRates::getCurrencyForToday($currency);
 
-            if($todayCurrency !== null)
-            {
-                continue;
-            }
+                if ($todayCurrency !== null)
+                {
+                    continue;
+                }
 
-            $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
-            ExchangeRates::create([
-                'currency' => $currency,
-                'value' => $response->json()['exchange_middle']
+                try
+                {
+                    $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
+                    ExchangeRates::create([
+                        'currency' => $currency,
+                        'value' => $response->json()['exchange_middle']
+                    ]);
 
-            ]);
+                    $this->output->comment('Added exchange middle for: ' . $currency);
+                }
+                catch(\Exception $e)
+                {
+                    $this->output->error('Failed to add exchange rates for: ' . "$currency" . $e->getMessage());
+                }
 
         }
 
