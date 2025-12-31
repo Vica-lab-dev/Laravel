@@ -10,9 +10,10 @@
     @section("shopSection")
 
             @foreach($products as $product)
-                <div>
-                    <p class="Center">{{$product->name}}</p>
-                    <p class="Center">{{$product->amount}}</p>
+                <div class="Center flex">
+                    <p>{{$product->name}}</p>
+                    <p>{{ $product->description  }}</p>
+                    <a href="{{ route('products.permalink', ['product' => $product->id ]) }}">Detail</a>
                 </div>
             @endforeach
     @endsection

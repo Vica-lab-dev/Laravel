@@ -16,6 +16,12 @@ class ProductsController extends Controller
     {
         $this->productRepo = new ProductRepository();
     }
+
+    public function permalink(ProductsModel $product)
+    {
+        return view("products.permalink", compact('product'));
+    }
+
     public function getAllProducts()
     {
         $allProducts = ProductsModel::all();
