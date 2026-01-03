@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminPageRequest;
+use App\Http\Requests\EditRequest;
 use App\Models\pagesModel;
 use App\Repositories\AdminRepository;
 use Illuminate\Http\Request;
@@ -30,6 +31,13 @@ class AdminController extends Controller
     public function singlePage(pagesModel $page)
     {
         return view('singlePage', compact('page'));
+    }
+
+    public function update(EditRequest $request, pagesModel $page)
+    {
+        $this->pagesRepo->update($request, $page);
+
+        return redirect()->route('admin.page');
     }
 
 }
