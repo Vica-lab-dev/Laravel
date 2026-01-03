@@ -1,6 +1,7 @@
 @extends('bootstrap')
 
-<form>
+<form action="{{ route('admin.create') }}" method="POST">
+    {{ csrf_field() }}
     <div class="mb-3">
         <label for="PageID" class="form-label">Enter Page name</label>
         <input type="text" class="form-control" id="PageID" name="page">
