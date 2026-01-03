@@ -1,0 +1,45 @@
+@php use App\Models\UsersComment; @endphp
+@extends('bootstrap')
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">URL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ $page->name }}</td>
+        <td>{{ $page->description }}</td>
+        <td>{{ $page->url }}</td>
+    </tbody>
+</table>
+
+<form action="{{ route('users.create') }}" method="POST">
+    {{ csrf_field() }}
+    <div class="mb-3">
+        <input type="hidden" class="form-control" name="user_id" value="{{ auth()->user()->id }}">
+        <label for="commentID" class="form-label">Leave us a comment</label>
+        <input type="text" class="form-control" id="commentID" name="comment">
+        <button class="btn btn-primary">Comment</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Comment</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(UsersComment::all() as $singleComment)
+        <tr>
+            <th scope="row">{{ $singleComment->userComment->name }}</th>
+            <th>{{ $singleComment->comment }}</th>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
