@@ -11,6 +11,10 @@ class usersController extends Controller
     {
         $allPages = pagesModel::all();
         return view('users.page', compact('allPages'));
+    }
 
+    public function singlePage(pagesModel $page)
+    {
+        return view('users.single', compact('page'));
     }
 }
