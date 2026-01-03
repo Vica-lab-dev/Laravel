@@ -17,7 +17,8 @@ class AdminController extends Controller
     }
     public function page()
     {
-        return view('adminPage');
+        $allPages = pagesModel::all();
+        return view('adminPage', compact('allPages'));
     }
 
     public function create(AdminPageRequest $request)
@@ -25,4 +26,10 @@ class AdminController extends Controller
         $this->pagesRepo->createNew($request);
         return redirect()->back();
     }
+
+    public function singlePage(pagesModel $page)
+    {
+        return view('singlePage', compact('page'));
+    }
+
 }

@@ -16,3 +16,29 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">URL</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($allPages as $page)
+    <tr>
+        <th scope="row">{{ $page->id }}</th>
+        <td>{{ $page->name }}</td>
+        <td>{{ $page->description }}</td>
+        <td>{{ $page->url }}</td>
+        <td>
+            <a class="btn btn-primary" href="{{ route('admin.edit', ['page' => $page->id]) }}">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    @endforeach
+    </tbody>
+</table>
