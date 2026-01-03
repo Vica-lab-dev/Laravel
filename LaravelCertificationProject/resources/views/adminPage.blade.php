@@ -36,7 +36,7 @@
         <td>{{ $page->url }}</td>
         <td>
             <a class="btn btn-primary" href="{{ route('admin.edit', ['page' => $page->id]) }}">Edit</a>
-            <a class="btn btn-danger">Delete</a>
+            <a class="btn btn-danger" href="{{ route('admin.delete', ['page' => $page->id]) }}">Delete</a>
         </td>
     </tr>
     @endforeach
