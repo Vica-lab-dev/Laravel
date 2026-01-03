@@ -26,4 +26,5 @@ Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->name(
     Route::get('/page', [AdminController::class, 'page'])->name('page');
     Route::post('/create', [AdminController::class, 'create'])->name('create');
     Route::get('/page/edit/{page}', [AdminController::class, 'singlePage'])->name('edit');
+    Route::post('page/update/{page}', [AdminController::class, 'update'])->name('update');
 });
