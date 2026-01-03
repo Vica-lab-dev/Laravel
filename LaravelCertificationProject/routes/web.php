@@ -21,11 +21,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->name("admin.")->group(function ()
+Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function ()
 {
-    Route::get('/page', [AdminController::class, 'page'])->name('page');
-    Route::post('/create', [AdminController::class, 'create'])->name('create');
-    Route::get('/page/edit/{page}', [AdminController::class, 'singlePage'])->name('edit');
-    Route::post('page/update/{page}', [AdminController::class, 'update'])->name('update');
-    Route::get('/page/delete/{page}', [AdminController::class, 'delete'])->name('delete');
+    Route::controller(AdminController::class)->name('admin.')->group(function ()
+    {
+        Route::get('/page',  'page')->name('page');
+        Route::post('/create',  'create')->name('create');
+        Route::get('/page/edit/{page}',  'singlePage')->name('edit');
+        Route::post('page/update/{page}',  'update')->name('update');
+        Route::get('/page/delete/{page}',  'delete')->name('delete');
+    });
 });
