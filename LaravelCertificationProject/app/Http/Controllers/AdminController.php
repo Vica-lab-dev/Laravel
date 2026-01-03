@@ -40,4 +40,11 @@ class AdminController extends Controller
         return redirect()->route('admin.page');
     }
 
+    public function delete(pagesModel $page)
+    {
+        $page->delete();
+
+        return redirect()->route('admin.page');
+    }
+
 }
