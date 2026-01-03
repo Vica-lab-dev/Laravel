@@ -15,7 +15,7 @@
             <td>{{ $page->name }}</td>
             <td>{{ $page->description }}</td>
             <td>{{ $page->url }}</td>
-            <td><a class="btn btn-primary" href="">Go</a></td>
+            <td><a class="btn btn-primary" href="{{ route('users.single', ['page' => $page->id]) }}">Go</a></td>
         </tr>
     @endforeach
     </tbody>
