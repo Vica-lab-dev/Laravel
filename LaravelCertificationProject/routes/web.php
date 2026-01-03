@@ -24,4 +24,5 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->name("admin.")->group(function ()
 {
     Route::get('/page', [AdminController::class, 'page'])->name('page');
+    Route::post('/create', [AdminController::class, 'create'])->name('create');
 });
