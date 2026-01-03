@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\usersController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,13 @@ Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group
         Route::get('/page/edit/{page}',  'singlePage')->name('edit');
         Route::post('page/update/{page}',  'update')->name('update');
         Route::get('/page/delete/{page}',  'delete')->name('delete');
+    });
+});
+
+Route::middleware('auth')->prefix('users')->group(function ()
+{
+    Route::controller(usersController::class)->name('users.')->group(function ()
+    {
+        Route::get('/page', 'page')->name('page');
     });
 });
