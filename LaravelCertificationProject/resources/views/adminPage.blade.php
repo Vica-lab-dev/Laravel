@@ -4,15 +4,15 @@
     {{ csrf_field() }}
     <div class="mb-3">
         <label for="PageID" class="form-label">Enter Page name</label>
-        <input type="text" class="form-control" id="PageID" name="page">
+        <input type="text" class="form-control" id="PageID" name="page" required>
     </div>
     <div class="mb-3">
         <label for="descriptionID" class="form-label">Enter page descritpion</label>
-        <input type="text" class="form-control" id="descriptionID" name="description">
+        <input type="text" class="form-control" id="descriptionID" name="description" required>
     </div>
     <div class="mb-3">
         <label for="urlID" class="form-label">Enter page URL</label>
-        <input type="text" class="form-control" id="urlID" name="url">
+        <input type="text" class="form-control" id="urlID" name="url" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
