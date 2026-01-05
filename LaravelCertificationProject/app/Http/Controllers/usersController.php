@@ -7,6 +7,7 @@ use App\Models\pagesModel;
 use App\Models\UsersComment;
 use App\Repositories\userRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class usersController extends Controller
 {
@@ -33,6 +34,18 @@ class usersController extends Controller
         $this->userRepo->createNew($request);
 
         return redirect()->back();
+    }
+
+    public function delete(UsersComment $comment)
+    {
+        if(Auth::id() !== $comment->user_id)
+        {
+            die("You don't have permission to delete this comment");
+        }
+
+        $comment->delete();
+        return redirect()->back();
+
     }
 
 

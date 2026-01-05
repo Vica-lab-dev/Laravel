@@ -7,6 +7,7 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">URL</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
         <tr>
             <th scope="row">{{ $singleComment->userComment->name }}</th>
             <th><i>{{ $singleComment->comment }}</i></th>
+            <td><a class="btn btn-danger" href="{{ route('users.delete', ['comment' => $singleComment->id]) }}">Delete comment</a></td>
         </tr>
     @endforeach
     </tbody>

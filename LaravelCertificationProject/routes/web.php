@@ -41,5 +41,6 @@ Route::middleware('auth')->prefix('users')->group(function ()
         Route::get('/page', 'page')->name('page');
         Route::get('/singlePage/{page}', 'singlePage')->name('single');
         Route::post('/create', 'create')->name('create');
+        Route::get('/delete/{comment}', 'delete')->name('delete');
     });
 });
