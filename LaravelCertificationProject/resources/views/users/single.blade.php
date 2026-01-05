@@ -13,7 +13,7 @@
     <tr>
         <td>{{ $page->name }}</td>
         <td>{{ $page->description }}</td>
-        <td>{{ $page->url }}</td>
+        <td><i><b>{{ $page->url }}</b></i></td>
     </tbody>
 </table>
 
@@ -21,7 +21,7 @@
     {{ csrf_field() }}
     <div class="mb-3">
         <input type="hidden" class="form-control" name="user_id" value="{{ auth()->user()->id }}">
-        <label for="commentID" class="form-label">Leave us a comment</label>
+        <label for="commentID" class="form-label"><i>Leave us a comment</i></label>
         <input type="text" class="form-control" id="commentID" name="comment">
         <button class="btn btn-primary">Comment</button>
     </div>
@@ -38,7 +38,7 @@
     @foreach(UsersComment::all() as $singleComment)
         <tr>
             <th scope="row">{{ $singleComment->userComment->name }}</th>
-            <th>{{ $singleComment->comment }}</th>
+            <th><i>{{ $singleComment->comment }}</i></th>
         </tr>
     @endforeach
     </tbody>
