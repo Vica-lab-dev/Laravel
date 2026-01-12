@@ -13,6 +13,8 @@ class ProductsController extends Controller
     {
         Products::create($request->validated());
 
+        Cache::forget('allProducts');
+
         return redirect()->back();
     }
 
