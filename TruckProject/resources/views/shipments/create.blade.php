@@ -1,3 +1,4 @@
+@php use App\Models\Shipments; @endphp
 @extends('layout')
 
 @section('content')
@@ -27,10 +28,9 @@
 
             <label for="status">Status</label>
             <select name="status" id="status" required>
-                <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="in_transit" {{ old('status') == 'in_transit' ? 'selected' : '' }}>In Transit</option>
-                <option value="delivered" {{ old('status') == 'delivered' ? 'selected' : '' }}>Delivered</option>
-                <option value="canceled" {{ old('status') == 'canceled' ? 'selected' : '' }}>Canceled</option>
+                @foreach(Shipments::ALLOWED_STATUSES as $status)
+                    <option value="{{ $staus }}">{{ $status }}</option>
+                @endforeach
             </select>
 
             <label for="user_id">User ID</label>
@@ -51,7 +51,7 @@
             border: 1px solid #ccc;
             border-radius: 8px;
             background-color: #f9f9f9;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .shipment-form-container h1 {
