@@ -25,7 +25,7 @@ class ShipmentsFactory extends Factory
             'from_country' => $this->faker->country(),
             'to_country'   => $this->faker->country(),
             'price'        => $this->faker->numberBetween(100,  5000),
-            'status'       => $this->faker->randomElement(['pending', 'in_transit', 'delivered', 'canceled']),
+            'status'       => $this->faker->randomElement(['in_progress', 'unassigned', 'completed', 'problem']),
             'user_id'      => User::factory(),
             'details'      => $this->faker->paragraph(),
         ];
