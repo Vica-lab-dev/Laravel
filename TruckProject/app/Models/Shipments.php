@@ -9,6 +9,19 @@ class Shipments extends Model
 {
     use HasFactory;
 
+    const STATUS_UNASSIGNED = 'unassigned';
+
+    const STATUS_IN_PROGRESS = 'in_progress';
+
+    const STATUS_COMPLETED = 'completed';
+
+    const STATUS_PROBLEM = 'problem';
+
+    const ALLOWED_STATUSES = [
+        self::STATUS_IN_PROGRESS, self::STATUS_COMPLETED,
+        self::STATUS_PROBLEM, self::STATUS_UNASSIGNED
+    ];
+
     protected $table = 'shipments';
 
     protected $fillable = [
@@ -17,4 +30,14 @@ class Shipments extends Model
       'price', 'status', 'user_id',
       'details',
     ];
+
+    public function setStatusAttribute($status)
+    {
+        if(!in_array($status, self::ALLOWED_STATUSES))
+        {
+            throw new \Exception("Invalid status");
+        }
+
+        $this->attrinbutes['status'] = $status;
+    }
 }
