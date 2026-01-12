@@ -53,11 +53,5 @@
             font-size: 0.9em;
             color: #666;
         }
-
-        /* Status colors */
-        .status.pending { color: orange; font-weight: bold; }
-        .status.in_transit { color: blue; font-weight: bold; }
-        .status.delivered { color: green; font-weight: bold; }
-        .status.canceled { color: red; font-weight: bold; }
     </style>
 @endsection
