@@ -29,7 +29,7 @@
             <label for="status">Status</label>
             <select name="status" id="status" required>
                 @foreach(Shipments::ALLOWED_STATUSES as $status)
-                    <option value="{{ $staus }}">{{ $status }}</option>
+                    <option value="{{ $status }}">{{ $status }}</option>
                 @endforeach
             </select>
 
