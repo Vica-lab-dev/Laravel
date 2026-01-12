@@ -13,8 +13,9 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        return view('shipments.index', ['shipments' => Shipments::all()]);
-    }
+        $shipment = Shipments::where('status', Shipments::STATUS_UNASSIGNED)->get();
+
+        return view('shipments.index', ['shipments' => $shipment]);    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +37,9 @@ class ShipmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Shipments $shipments)
+    public function show(Shipments $shipment)
     {
-        //
+        return view('shipments.show', compact('shipment'));
     }
 
     /**
