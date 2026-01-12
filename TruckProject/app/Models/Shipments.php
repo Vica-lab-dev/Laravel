@@ -38,6 +38,6 @@ class Shipments extends Model
             throw new \Exception("Invalid status");
         }
 
-        $this->attrinbutes['status'] = $status;
+        $this->attributes['status'] = $status;
     }
 }
