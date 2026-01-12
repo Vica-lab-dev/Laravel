@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewShipmentRequest;
 use App\Models\Shipments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ShipmentController extends Controller
 {
@@ -13,9 +14,12 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        $shipment = Shipments::where('status', Shipments::STATUS_UNASSIGNED)->get();
-
-        return view('shipments.index', ['shipments' => $shipment]);    }
+        $shipment = Cache::remember('unassigned_shipments', 30, function ()
+        {
+            return Shipments::where('status', Shipments::STATUS_UNASSIGNED)->get();
+        });
+        return view('shipments.index', ['shipments' => $shipment]);
+    }
 
     /**
      * Show the form for creating a new resource.
