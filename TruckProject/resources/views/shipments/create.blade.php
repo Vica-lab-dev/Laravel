@@ -1,4 +1,4 @@
-@php use App\Models\Shipments; @endphp
+@php use App\Models\Shipment; @endphp
 @extends('layout')
 
 @section('content')
@@ -28,7 +28,7 @@
 
             <label for="status">Status</label>
             <select name="status" id="status" required>
-                @foreach(Shipments::ALLOWED_STATUSES as $status)
+                @foreach(Shipment::ALLOWED_STATUSES as $status)
                     <option value="{{ $status }}">{{ $status }}</option>
                 @endforeach
             </select>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewShipmentRequest;
-use App\Models\Shipments;
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,7 +16,7 @@ class ShipmentController extends Controller
     {
         $shipment = Cache::remember('unassigned_shipments', 30, function ()
         {
-            return Shipments::where('status', Shipments::STATUS_UNASSIGNED)->get();
+            return Shipment::where('status', Shipment::STATUS_UNASSIGNED)->get();
         });
         return view('shipments.index', ['shipments' => $shipment]);
     }
@@ -34,14 +34,14 @@ class ShipmentController extends Controller
      */
     public function store(NewShipmentRequest $request)
     {
-        Shipments::create($request->validated());
+        Shipment::create($request->validated());
         return redirect()->route('shipments.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Shipments $shipment)
+    public function show(Shipment $shipment)
     {
         return view('shipments.show', compact('shipment'));
     }
@@ -49,7 +49,7 @@ class ShipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Shipments $shipments)
+    public function edit(Shipment $shipments)
     {
         //
     }
@@ -57,7 +57,7 @@ class ShipmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Shipments $shipments)
+    public function update(Request $request, Shipment $shipments)
     {
         //
     }
@@ -65,7 +65,7 @@ class ShipmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Shipments $shipments)
+    public function destroy(Shipment $shipments)
     {
         //
     }
