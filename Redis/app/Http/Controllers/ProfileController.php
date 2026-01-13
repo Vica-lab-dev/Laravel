@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class ProfileController extends Controller
 {
@@ -42,17 +45,21 @@ class ProfileController extends Controller
 
     public function changeAvatar(NewAvatarRequest $request)
     {
-        $filePath = $request->file('profile_image')
-        ->store('images/avatars', 'public');
+        //$avatar = Auth::user()->avatar;
+        ////if($avatar !== null)
+       // {
+       //     File::delete("storage/images/avatars/$avatar");
+       // }
 
-        $name = basename($filePath);
+        $name = uniqid()."webp";
+        $file = request()->file('profile_image');
 
-        $avatar = Auth::user()->avatar;
+        $gd = new Driver();
+        $manager = new ImageManager($gd);
 
-        if($avatar !== null)
-        {
-            File::delete("storage/images/avatars/$avatar");
-        }
+        $image = $manager->read($file)->toWebp(90); // od 1% do 100% kvalitet slike, veci br, veca slika, veci kvalitet
+
+        Storage::disk('public')->put("images/avatars/$name", (string) $image);
 
         Auth::user()->update(['avatar' => $name]);
 
