@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewAvatarRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ use Intervention\Image\ImageManager;
 
 class ProfileController extends Controller
 {
+
+    use ImageUploadTrait;
     /**
      * Display the user's profile form.
      */
@@ -45,21 +48,13 @@ class ProfileController extends Controller
 
     public function changeAvatar(NewAvatarRequest $request)
     {
-        //$avatar = Auth::user()->avatar;
-        ////if($avatar !== null)
-       // {
-       //     File::delete("storage/images/avatars/$avatar");
-       // }
+        $avatar = Auth::user()->avatar;
+        if($avatar !== null)
+        {
+            File::delete("storage/images/avatars/$avatar");
+        }
 
-        $name = uniqid()."webp";
-        $file = request()->file('profile_image');
-
-        $gd = new Driver();
-        $manager = new ImageManager($gd);
-
-        $image = $manager->read($file)->toWebp(90); // od 1% do 100% kvalitet slike, veci br, veca slika, veci kvalitet
-
-        Storage::disk('public')->put("images/avatars/$name", (string) $image);
+        $name = $this->imageUpload($request->file('profile_image'), 'images/avatars');
 
         Auth::user()->update(['avatar' => $name]);
 
