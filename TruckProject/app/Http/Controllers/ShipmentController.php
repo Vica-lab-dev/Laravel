@@ -34,6 +34,25 @@ class ShipmentController extends Controller
      */
     public function store(NewShipmentRequest $request)
     {
+        $fileTypes = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ];
+
+        foreach($request->file('documents') as $document)
+        {
+            if(str_starts_with($document->getMimeType(), 'image/'))
+            {
+                dd("Slika!");
+            }
+            elseif(in_array($document->getMImeType(), $fileTypes))
+            {
+                dd('PDF!');
+            }
+
+        }
+
         Shipment::create($request->validated());
         return redirect()->route('shipments.index');
     }
