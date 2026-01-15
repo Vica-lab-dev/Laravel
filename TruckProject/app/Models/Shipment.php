@@ -22,7 +22,7 @@ class Shipment extends Model
         self::STATUS_PROBLEM, self::STATUS_UNASSIGNED
     ];
 
-    protected $table = 'shipments';
+    protected $table = 'shipment';
 
     protected $fillable = [
       'title', 'from_city', 'to_city',
