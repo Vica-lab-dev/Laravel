@@ -5,7 +5,7 @@
     <div class="shipment-form-container">
         <h1>Create New Shipment</h1>
 
-        <form action="{{ route('shipments.store') }}" method="POST">
+        <form action="{{ route('shipments.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
 
             <label for="title">Title</label>
@@ -33,12 +33,20 @@
                 @endforeach
             </select>
 
-            <label for="user_id">User ID</label>
-            <input type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" required>
+            <div>
+                <label for="documents">Documents</label>
+                <input type="file" name="documents[]" multiple required>
+            </div>
 
-            <label for="details">Details</label>
-            <textarea name="details" id="details" rows="4">{{ old('details') }}</textarea>
+            <div>
+                <label for="user_id">User ID</label>
+                <input type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" required>
+            </div>
 
+            <div>
+                <label for="details">Details</label>
+                <textarea name="details" id="details" rows="4">{{ old('details') }}</textarea>
+            </div>
             <button type="submit">Create Shipment</button>
         </form>
     </div>
