@@ -10,6 +10,10 @@
                 <p><strong>Price:</strong> ${{ number_format($shipment->price, 2) }}</p>
                 <p><strong>Status:</strong> <span class="status {{ strtolower($shipment->status) }}">{{ $shipment->status }}</span></p>
                 <p class="details">{{ $shipment->details }}</p>
+
+                <div>
+                    <a href="{{ route('shipments.show', ['shipment' => $shipment->id]) }}">View Shipment</a>
+                </div>
             </div>
         @endforeach
     </div>
