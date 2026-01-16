@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewShipmentRequest;
 use App\Models\Shipment;
+use App\Models\ShipmentDocuments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -34,6 +35,8 @@ class ShipmentController extends Controller
      */
     public function store(NewShipmentRequest $request)
     {
+        $shipment = Shipment::create($request->validated());
+
         $fileTypes = [
             'application/pdf',
             'application/msword',
@@ -48,12 +51,23 @@ class ShipmentController extends Controller
             }
             elseif(in_array($document->getMImeType(), $fileTypes))
             {
-                dd('PDF!');
+                $extension = $document->getClientOriginalExtension();
+
+                $filename = uniqid().".".$extension;
+
+                $path = $document->StoreAs("documents/{$shipment->id}", $filename, 'public');
+
+                $path = str_replace("documents/", "", $path);
+
+                ShipmentDocuments::create([
+                    'shipment_id' => $shipment->id,
+                    'document_name' => $path,
+                ]);
             }
 
         }
 
-        Shipment::create($request->validated());
+
         return redirect()->route('shipments.index');
     }
 
