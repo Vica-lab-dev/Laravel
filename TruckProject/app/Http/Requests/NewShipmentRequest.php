@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserClient;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +33,8 @@ class NewShipmentRequest extends FormRequest
             'status'       => 'required|in:in_progress,unassigned,completed,problem',
             'details'      => 'nullable|string|max:1000',
             'documents'    => 'required|array',
-            'documents.*'   => 'file|mimes:jpg,jpeg,png,webp,pdf,doc,docx|max:10240'
+            'documents.*'  => 'file|mimes:jpg,jpeg,png,webp,pdf,doc,docx|max:10240',
+            'client_id'    => ['required', new UserClient()]
         ];
     }
 }
