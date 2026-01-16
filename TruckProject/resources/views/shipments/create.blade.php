@@ -33,6 +33,13 @@
                 @endforeach
             </select>
 
+            @if($errors->has('client_id'))
+                <p>{{ $errors->first() }}</p>
+            @endif
+
+            <label for="client_id">Client ID</label>
+            <input type="number" name="client_id" value="{{ old('client_id') ?? '' }}" required>
+
             <div>
                 <label for="documents">Documents</label>
                 <input type="file" name="documents[]" multiple required>
