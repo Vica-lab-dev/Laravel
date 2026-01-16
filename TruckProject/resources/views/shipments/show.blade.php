@@ -20,6 +20,12 @@
             <p class="details"><strong>Details:</strong> {{ $shipment->details }}</p>
 
             <p><strong>User ID:</strong> {{ $shipment->user_id }}</p>
+
+            <div>
+                @foreach($shipment->documents as $document)
+                    <p><strong>Document: </strong> {{ $document->document_name }}</p>
+                @endforeach
+            </div>
         </div>
     </div>
 
