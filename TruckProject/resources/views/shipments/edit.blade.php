@@ -30,11 +30,18 @@
                 <input type="number" name="price" id="price" value="{{ $shipment->price ?? '' }}" step="0.01" required>
 
                 @if($errors->has('user_id'))
-                    <p>{{ $errors->first() }}</p>
+                    <p>{{ $errors->first('user_id') }}</p>
                 @endif
 
-                <label for="user_id">Trucker_ID</label>
+                <label for="user_id">Trucker ID</label>
                 <input type="number" name="user_id" value="{{ $shipment->user_id ?? '' }}" required>
+
+                @if($errors->has('client_id'))
+                    <p>{{ $errors->first('client_id') }}</p>
+                @endif
+
+                <label for="client_id">Client ID</label>
+                <input type="number" name="client_id" value="{{ $shipment->client_id ?? '' }}" required>
 
                 <label for="status">Status</label>
                 <select name="status" id="status" required>
