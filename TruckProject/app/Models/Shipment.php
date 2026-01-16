@@ -40,7 +40,7 @@ class Shipment extends Model
       'title', 'from_city', 'to_city',
       'from_country', 'to_country',
       'price', 'status', 'user_id',
-      'details',
+      'details', 'client_id',
     ];
 
     public function setStatusAttribute($status)
