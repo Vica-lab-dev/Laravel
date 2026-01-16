@@ -29,6 +29,9 @@
                 <label for="price">Price</label>
                 <input type="number" name="price" id="price" value="{{ $shipment->price ?? '' }}" step="0.01" required>
 
+                <label for="user_id">Trucker_ID</label>
+                <input type="number" name="user_id" value="{{ $shipment->user_id ?? '' }}" required>
+
                 <label for="status">Status</label>
                 <select name="status" id="status" required>
                     @foreach(Shipment::ALLOWED_STATUSES as $status)
