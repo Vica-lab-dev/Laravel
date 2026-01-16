@@ -29,6 +29,10 @@
                 <label for="price">Price</label>
                 <input type="number" name="price" id="price" value="{{ $shipment->price ?? '' }}" step="0.01" required>
 
+                @if($errors->has('user_id'))
+                    <p>{{ $errors->first() }}</p>
+                @endif
+
                 <label for="user_id">Trucker_ID</label>
                 <input type="number" name="user_id" value="{{ $shipment->user_id ?? '' }}" required>
 
