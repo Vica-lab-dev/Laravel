@@ -23,7 +23,10 @@
 
             <div>
                 @foreach($shipment->documents as $document)
-                    <p><strong>Document: </strong> {{ $document->document_name }}</p>
+                    <p><strong>Document: </strong>
+                        <a target="_blank" href="/storage/documents/{{$document->document_name}}">
+                            {{ $document->document_name }}
+                        </a></p>
                 @endforeach
             </div>
         </div>
