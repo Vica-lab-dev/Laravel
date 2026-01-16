@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewShipmentRequest;
 use App\Models\Shipment;
 use App\Models\ShipmentDocuments;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class ShipmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use ImageUploadTrait;
+
     public function index()
     {
         $shipment = Cache::remember('unassigned_shipments', 30, function ()
@@ -47,7 +47,14 @@ class ShipmentController extends Controller
         {
             if(str_starts_with($document->getMimeType(), 'image/'))
             {
-                dd("Slika!");
+                $name = $this->imageUpload($document, "documents/$shipment->id");
+
+                $name = $shipment->id."/".$name;
+
+                ShipmentDocuments::create([
+                    'shipment_id' => $shipment->id,
+                    'document_name' => $name
+                ]);
             }
             elseif(in_array($document->getMImeType(), $fileTypes))
             {
