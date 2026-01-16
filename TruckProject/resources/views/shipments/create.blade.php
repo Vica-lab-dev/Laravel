@@ -39,11 +39,6 @@
             </div>
 
             <div>
-                <label for="user_id">User ID</label>
-                <input type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" required>
-            </div>
-
-            <div>
                 <label for="details">Details</label>
                 <textarea name="details" id="details" rows="4">{{ old('details') }}</textarea>
             </div>
