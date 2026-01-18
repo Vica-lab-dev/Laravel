@@ -1,3 +1,4 @@
+@php use App\Models\User; @endphp
 @extends('layout')
 
 @section('content')
@@ -8,12 +9,23 @@
                 <p><strong>From:</strong> {{ $shipment->from_city }}, {{ $shipment->from_country }}</p>
                 <p><strong>To:</strong> {{ $shipment->to_city }}, {{ $shipment->to_country }}</p>
                 <p><strong>Price:</strong> ${{ number_format($shipment->price, 2) }}</p>
-                <p><strong>Status:</strong> <span class="status {{ strtolower($shipment->status) }}">{{ $shipment->status }}</span></p>
+                <p><strong>Status:</strong> <span
+                        class="status {{ strtolower($shipment->status) }}">{{ $shipment->status }}</span></p>
                 <p class="details">{{ $shipment->details }}</p>
 
                 <div>
                     <a href="{{ route('shipments.show', ['shipment' => $shipment->id]) }}">View Shipment</a>
                 </div>
+
+                <form action="">
+                    <select name="user">
+                        <option selected disabled>None</option>
+                        @foreach(User::all() as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                    <button>Assigned</button>
+                </form>
             </div>
         @endforeach
     </div>
@@ -31,7 +43,7 @@
             border-radius: 8px;
             padding: 15px;
             width: 300px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
             background-color: #f9f9f9;
         }
