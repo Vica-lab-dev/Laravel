@@ -90,6 +90,7 @@ class ShipmentController extends Controller
      */
     public function show(Shipment $shipment)
     {
+        Gate::authorize('view', $shipment);
         return view('shipments.show', compact('shipment'));
     }
 
