@@ -12,7 +12,7 @@ class Shipment extends Model
 
     const STATUS_UNASSIGNED = 'unassigned';
 
-    const STATUS_IN_PROGRESS = 'in_progress';
+    const STATUS_IN_PROGRESS = 'started';
 
     const STATUS_COMPLETED = 'completed';
 
@@ -27,10 +27,8 @@ class Shipment extends Model
 
     public static function booted()
     {
-        static::created(function ($shipment)
-        {
-            if($shipment->status === self::STATUS_UNASSIGNED)
-            {
+        static::created(function ($shipment) {
+            if ($shipment->status === self::STATUS_UNASSIGNED) {
                 Cache::forget('unassigned_shipments');
             }
         });
