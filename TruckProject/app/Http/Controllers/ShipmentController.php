@@ -18,10 +18,9 @@ class ShipmentController extends Controller
 
     public function index()
     {
-        $shipment = Cache::remember('unassigned_shipments', 30, function ()
-        {
-            return Shipment::where('status', Shipment::STATUS_UNASSIGNED)->get();
-        });
+        $shipment = Cache::remember('unassigned_shipments', 30,
+            fn () => Shipment::unassignedShipments()->get()
+        );
         return view('shipments.index', ['shipments' => $shipment]);
     }
 
