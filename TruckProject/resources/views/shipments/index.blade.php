@@ -17,8 +17,9 @@
                     <a href="{{ route('shipments.show', ['shipment' => $shipment->id]) }}">View Shipment</a>
                 </div>
 
-                <form action="">
-                    <select name="user">
+                <form action="{{ route('shipments.assignUser', ['shipment' => $shipment->id]) }}" method="POST">
+                    @csrf
+                    <select name="user_id">
                         <option selected disabled>None</option>
                         @foreach(User::all() as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
