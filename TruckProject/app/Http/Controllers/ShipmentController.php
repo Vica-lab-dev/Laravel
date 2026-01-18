@@ -30,7 +30,7 @@ class ShipmentController extends Controller
      */
     public function create()
     {
-        Gate::authorize('view', Shipment::class);
+        Gate::authorize('canViewCreationPage', Shipment::class);
 
         return view('shipments.create');
     }
