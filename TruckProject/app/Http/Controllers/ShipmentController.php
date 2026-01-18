@@ -8,6 +8,8 @@ use App\Models\Shipment;
 use App\Models\ShipmentDocuments;
 use App\Models\User;
 use App\Traits\ImageUploadTrait;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
@@ -118,5 +120,18 @@ class ShipmentController extends Controller
     public function destroy(Shipment $shipments)
     {
         //
+    }
+
+    public function assignUser(Request $request, Shipment $shipment): RedirectResponse
+    {
+        $request->validate(['user_id' => 'required|exists:users,id']);
+
+        $shipment->user_id = $request->user_id;
+        $shipment->status = Shipment::STATUS_IN_PROGRESS;
+
+        $shipment->save();
+
+
+        return redirect()->back();
     }
 }
