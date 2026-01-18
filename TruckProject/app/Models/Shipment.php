@@ -28,10 +28,21 @@ class Shipment extends Model
     public static function booted()
     {
         static::created(function ($shipment) {
-            if ($shipment->status === self::STATUS_UNASSIGNED) {
+            if ($shipment->status === self::STATUS_UNASSIGNED)
+            {
                 Cache::forget('unassigned_shipments');
             }
         });
+
+        static::updated(function ($shipment)
+        {
+               Cache::forget('unassigned_shipments');
+        });
+
+       static::deleted(callback: function ($shipment)
+       {
+               Cache::forget('unassigned_shipments');
+       });
     }
 
     protected $fillable = [
