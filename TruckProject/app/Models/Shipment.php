@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\ShipmentObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -25,24 +26,11 @@ class Shipment extends Model
 
     protected $table = 'shipment';
 
-    public static function booted()
+    protected static function booted(): void
     {
-        static::created(function ($shipment) {
-            if ($shipment->status === self::STATUS_UNASSIGNED)
-            {
-                Cache::forget('unassigned_shipments');
-            }
-        });
+        parent::boot();
 
-        static::updated(function ($shipment)
-        {
-               Cache::forget('unassigned_shipments');
-        });
-
-       static::deleted(callback: function ($shipment)
-       {
-               Cache::forget('unassigned_shipments');
-       });
+        static::observe(ShipmentObserver::class);
     }
 
     protected $fillable = [
