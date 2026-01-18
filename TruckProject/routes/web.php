@@ -28,3 +28,6 @@ require __DIR__ . '/auth.php';
 
 Route::resource('shipments', ShipmentController::class)
 ->parameters(['shipments' => 'shipment']);
+
+Route::post('shipments/{shipment}/assignUser', [ShipmentController::class, 'assignUser'])
+    ->name('shipments.assignUser');
