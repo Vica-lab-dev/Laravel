@@ -20,9 +20,9 @@ class ShipmentPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user): bool
+    public function view(User $user, Shipment $shipment): bool
     {
-        return $user->role === User::ROLE_ADMINISTRATOR;
+        return false;
     }
 
     /**
@@ -63,5 +63,10 @@ class ShipmentPolicy
     public function forceDelete(User $user, Shipment $shipment): bool
     {
         return false;
+    }
+
+    public function canViewCreationPage(User $user): bool
+    {
+        return $user->role === User::ROLE_ADMINISTRATOR;
     }
 }
