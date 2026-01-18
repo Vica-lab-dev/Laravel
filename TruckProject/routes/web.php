@@ -26,4 +26,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::resource('shipments', ShipmentController::class);
+Route::resource('shipments', ShipmentController::class)
+->parameters(['shipments' => 'shipment']);
