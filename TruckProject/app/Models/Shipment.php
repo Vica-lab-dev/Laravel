@@ -26,13 +26,6 @@ class Shipment extends Model
 
     protected $table = 'shipment';
 
-    protected static function booted(): void
-    {
-        parent::boot();
-
-        static::observe(ShipmentObserver::class);
-    }
-
     protected $fillable = [
       'title', 'from_city', 'to_city',
       'from_country', 'to_country',
