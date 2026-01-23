@@ -7,6 +7,7 @@ use App\Http\Requests\informationRequest;
 use App\Models\categoryModel;
 use App\Models\informationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class IntelligencesController extends Controller
 {
@@ -52,4 +53,55 @@ class IntelligencesController extends Controller
 
         return view('related', compact('information'));
     }
+
+    public function allInterests(Request $request)
+    {
+        $interests = $request->interests;
+
+        Session::put('interests', $interests);
+
+        return redirect()->route('describing');
+
+    }
+
+    public function interests()
+    {
+        $interests = [
+            'Linguistic intelligence',
+            'Logical-mathematical intelligence',
+            'Visual-spatial intelligence',
+            'Musical intelligence',
+            'Bodily-kinesthetic intelligence',
+            'Interpersonal intelligence',
+            'Intrapersonal intelligence',
+            'Naturalistic intelligence'
+        ];
+
+        return view('interests', compact('interests'));
+    }
+    public function describe()
+    {
+        $describe = Session::get('interests');
+
+        $intelligenceDescription = [
+            'Linguistic intelligence' => 'The ability to use words effectively, both in writing and speaking.',
+            'Logical-mathematical intelligence' => 'Ability to think logically, reason, and solve mathematical problems.',
+            'Visual-spatial intelligence' => 'Ability to visualize and manipulate objects in space.',
+            'Musical intelligence' => 'Ability to understand and create music, recognize rhythms and patterns.',
+            'Bodily-kinesthetic intelligence' => 'Skill in using your body to express ideas or solve problems.',
+            'Interpersonal intelligence' => 'Ability to understand and interact effectively with others.',
+            'Intrapersonal intelligence' => 'Capacity to understand yourself, your thoughts and feelings.',
+            'Naturalistic intelligence' => 'Ability to recognize and categorize plants, animals, and nature.',
+        ];
+
+        $selected = [];
+
+        foreach($describe as $interest)
+        {
+            $selected[$interest] = $intelligenceDescription[$interest];
+        }
+        return view('describe', compact('describe', 'selected'));
+
+    }
+
 }
