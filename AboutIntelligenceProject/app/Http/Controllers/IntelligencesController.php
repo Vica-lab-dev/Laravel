@@ -6,7 +6,9 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\informationRequest;
 use App\Models\categoryModel;
 use App\Models\informationModel;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class IntelligencesController extends Controller
@@ -47,9 +49,9 @@ class IntelligencesController extends Controller
         return view('categoriesForm', compact('information'));
     }
 
-    public function showRelated()
+    public function showRelated(Request $request)
     {
-        $information = informationModel::all();
+        $information = informationModel::where('user_id', Auth::id())->get();
 
         return view('related', compact('information'));
     }
