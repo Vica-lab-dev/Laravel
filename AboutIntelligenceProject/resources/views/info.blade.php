@@ -1,9 +1,10 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 @extends('cdn')
 
 <form method="POST" action="{{ route('create') }}">
     @csrf
     <div class="mb-3">
-        <input type="hidden" id="ID" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::id() }}" required>
+        <input type="hidden" id="ID" name="user_id" value="{{ Auth::id() }}" required>
     </div>
     <div class="mb-3">
         <label for="nameID" class="form-label">Enter your full name</label>
