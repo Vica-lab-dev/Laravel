@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IntelligencesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,21 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::view('/interests', 'interests');
+
+Route::view('/about-user', 'info');
+
+Route::view('/categories', 'categoriesForm')->name('categories.form');
+
+Route::view('/allInformation', 'information');
+
+Route::post('/about-user/create', [IntelligencesController::class, 'createInfo'])->name('create');
+
+Route::post('/category/create', [IntelligencesController::class, 'categoryCreate'])->name('category.create');
+
+Route::get('/information/{information}', [IntelligencesController::class, 'show'])->name('information.show');
+
+Route::get('/allInformation', [IntelligencesController::class, 'allInformation'])->name('allInformation.show');
+
+ROute::get('related/show', [IntelligencesController::class, 'showRelated'])->name('related.show');
