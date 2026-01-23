@@ -3,6 +3,7 @@
 use App\Http\Controllers\IntelligencesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,7 +21,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::view('/interests', 'interests');
+Route::get('/interests', [IntelligencesController::class, 'interests'])->name('interests');
 
 Route::view('/about-user', 'info');
 
@@ -37,3 +38,7 @@ Route::get('/information/{information}', [IntelligencesController::class, 'show'
 Route::get('/allInformation', [IntelligencesController::class, 'allInformation'])->name('allInformation.show');
 
 ROute::get('related/show', [IntelligencesController::class, 'showRelated'])->name('related.show');
+
+Route::post('/interests/all', [IntelligencesController::class, 'allInterests'])->name('interest.all');
+
+Route::get('/describing', [IntelligencesController::class, 'describe'])->name('describing');
