@@ -1,13 +1,15 @@
 @extends('cdn')
 
 @foreach($information as $info)
-    @foreach($info->allInformation as $singleInfo )
-        <p> {{$singleInfo->id}},
-            {{$info->name}},
-            {{$info->country}},
-            {{$singleInfo->category}}
-            {{$singleInfo->percent}}%
-        </p>
+    @foreach($info->allInformation as $singleInfo)
+
+            <p>
+                {{$info->name}},
+                {{$info->country}},
+                {{$singleInfo->category}}
+                {{$singleInfo->percent}}%
+            </p>
+
     @endforeach
 @endforeach
 
