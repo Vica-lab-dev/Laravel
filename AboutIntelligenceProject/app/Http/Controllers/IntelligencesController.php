@@ -7,13 +7,15 @@ use App\Http\Requests\informationRequest;
 use App\Models\categoryModel;
 use App\Models\informationModel;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class IntelligencesController extends Controller
 {
-    public function createInfo(informationRequest $request)
+    public function createInfo(informationRequest $request): RedirectResponse
     {
         $information = informationModel::create([
             'name' => $request->name,
@@ -25,7 +27,7 @@ class IntelligencesController extends Controller
 
     }
 
-    public function categoryCreate(CategoryRequest $request)
+    public function categoryCreate(CategoryRequest $request): RedirectResponse
     {
         $catInfo = categoryModel::create([
             'information_id' => $request->information_id,
@@ -37,25 +39,25 @@ class IntelligencesController extends Controller
 
     }
 
-    public function show(informationModel $information)
+    public function show(informationModel $information): View
     {
         return view('information', compact('information'));
     }
 
-    public function allInformation()
+    public function allInformation(): View
     {
         $information = informationModel::all();
         return view('categoriesForm', compact('information'));
     }
 
-    public function showRelated(Request $request)
+    public function showRelated(): View
     {
         $information = informationModel::where('user_id', Auth::id())->get();
 
         return view('related', compact('information'));
     }
 
-    public function allInterests(Request $request)
+    public function allInterests(Request $request): RedirectResponse
     {
         $interests = $request->interests;
 
@@ -65,7 +67,7 @@ class IntelligencesController extends Controller
 
     }
 
-    public function interests()
+    public function interests(): View
     {
         $interests = [
             'Linguistic intelligence',
@@ -80,7 +82,7 @@ class IntelligencesController extends Controller
 
         return view('interests', compact('interests'));
     }
-    public function describe(Request $request)
+    public function describe(): View
     {
         $describe = Session::get('interests') ?? [];
 
@@ -104,7 +106,7 @@ class IntelligencesController extends Controller
         return view('describe', compact('describe', 'selected'));
     }
 
-    public function quiz()
+    public function quiz(): View
     {
 
         $intelligences = [
@@ -122,7 +124,7 @@ class IntelligencesController extends Controller
 
     }
 
-    public function quizStarted(Request $request)
+    public function quizStarted(Request $request): View
     {
 
 
