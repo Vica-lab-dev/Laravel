@@ -121,4 +121,32 @@ class IntelligencesController extends Controller
         return view('quiz', compact('intelligences'));
 
     }
+
+    public function quizStarted(Request $request)
+    {
+
+
+        $answers = [
+            'linguistic' => 12.5,
+            'logical' => 12.5,
+            'spatial' => 12.5,
+            'bodily' => 12.5,
+            'musical' => 12.5,
+            'interpersonal' => 12.5,
+            'intrapersonal' => 12.5,
+            'naturalistic' => 12.5,
+        ];
+
+        $selected = $request->intelligences;
+
+        $count = 0;
+
+        foreach($selected as $intelligence)
+        {
+            $count += $answers[$intelligence];
+        }
+
+        return view('quizStarted', compact( 'count'));
+
+    }
 }
