@@ -21,28 +21,36 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/interests', [IntelligencesController::class, 'interests'])->name('interests');
+Route::middleware('auth')->controller(IntelligencesController::class)->group(function () {
+    Route::get('/interests', 'interests')->name('interests');
 
-Route::view('/about-user', 'info');
+    Route::post('/about-user/create', 'createInfo')->name('create');
 
-Route::view('/categories', 'categoriesForm')->name('categories.form');
+    Route::post('/category/create', 'categoryCreate')->name('category.create');
 
-Route::view('/allInformation', 'information');
+    Route::get('/information/{information}', 'show')->name('information.show');
 
-Route::post('/about-user/create', [IntelligencesController::class, 'createInfo'])->name('create');
+    Route::get('/allInformation', 'allInformation')->name('allInformation.show');
 
-Route::post('/category/create', [IntelligencesController::class, 'categoryCreate'])->name('category.create');
+    ROute::get('related/show', 'showRelated')->name('related.show');
 
-Route::get('/information/{information}', [IntelligencesController::class, 'show'])->name('information.show');
+    Route::post('/interests/all', 'allInterests')->name('interest.all');
 
-Route::get('/allInformation', [IntelligencesController::class, 'allInformation'])->name('allInformation.show');
+    Route::get('/describing', 'describe')->name('describing');
 
-ROute::get('related/show', [IntelligencesController::class, 'showRelated'])->name('related.show');
+    Route::get('/quiz', 'quiz')->name('quiz');
 
-Route::post('/interests/all', [IntelligencesController::class, 'allInterests'])->name('interest.all');
+    Route::post('/quiz/started', 'quizStarted')->name('quiz.started');
 
-Route::get('/describing', [IntelligencesController::class, 'describe'])->name('describing');
+    Route::view('/about-user', 'info');
 
-Route::get('/quiz', [IntelligencesController::class, 'quiz'])->name('quiz');
+    Route::view('/categories', 'categoriesForm')->name('categories.form');
 
-Route::post('/quiz/started', [IntelligencesController::class, 'quizStarted'])->name('quiz.started');
+    Route::view('/all/Information', 'information');
+
+});
+
+
+
+
+
