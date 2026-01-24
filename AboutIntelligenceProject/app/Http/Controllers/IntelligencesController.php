@@ -82,7 +82,7 @@ class IntelligencesController extends Controller
     }
     public function describe(Request $request)
     {
-        $describe = Session::get('interests');
+        $describe = Session::get('interests') ?? [];
 
         $intelligenceDescription = [
             'Linguistic intelligence' => 'The ability to use words effectively, both in writing and speaking.',
@@ -137,7 +137,7 @@ class IntelligencesController extends Controller
             'naturalistic' => 12.5,
         ];
 
-        $selected = $request->intelligences;
+        $selected = $request->input('intelligences', []);
 
         $count = 0;
 
