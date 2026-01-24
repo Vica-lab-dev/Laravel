@@ -21,7 +21,6 @@ class IntelligencesController extends Controller
             'user_id' => $request->user_id,
             'country' => $request->country,
         ]);
-
         return redirect()->route('information.show', $information->id);
 
     }
@@ -81,7 +80,7 @@ class IntelligencesController extends Controller
 
         return view('interests', compact('interests'));
     }
-    public function describe()
+    public function describe(Request $request)
     {
         $describe = Session::get('interests');
 
@@ -103,7 +102,23 @@ class IntelligencesController extends Controller
             $selected[$interest] = $intelligenceDescription[$interest];
         }
         return view('describe', compact('describe', 'selected'));
-
     }
 
+    public function quiz()
+    {
+
+        $intelligences = [
+            'linguistic',
+            'logical',
+            'spatial',
+            'bodily',
+            'musical',
+            'interpersonal',
+            'intrapersonal',
+            'naturalistic',
+        ];
+
+        return view('quiz', compact('intelligences'));
+
+    }
 }
