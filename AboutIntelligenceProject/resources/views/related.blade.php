@@ -1,4 +1,4 @@
-@extends('cdn')
+@extends('layout')
 
 @section('content')
     <div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">

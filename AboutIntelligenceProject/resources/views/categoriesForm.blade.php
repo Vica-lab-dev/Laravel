@@ -1,4 +1,4 @@
-@extends('cdn')
+@extends('layout')
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
@@ -29,7 +29,8 @@
 
                 <div class="mb-3">
                     <label for="percentID" class="form-label">Enter the percentage for the category</label>
-                    <input type="number" class="form-control" id="percentID" name="percent" placeholder="0-100%" required>
+                    <input type="number" class="form-control" id="percentID" name="percent" placeholder="0-100%"
+                           required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Save</button>

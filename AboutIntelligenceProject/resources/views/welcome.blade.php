@@ -1,4 +1,4 @@
-@extends('cdn')
+@extends('layout')
 
 @section('content')
     <div class="container text-center my-5">

@@ -1,4 +1,4 @@
-@extends('cdn')
+@extends('layout')
 
 @section('content')
     <style>
@@ -8,7 +8,7 @@
             padding: 30px;
             background: #fff;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -37,7 +37,8 @@
             @csrf
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="linguistic" name="intelligences[]" value="linguistic">
+                <input class="form-check-input" type="checkbox" id="linguistic" name="intelligences[]"
+                       value="linguistic">
                 <label class="form-check-label" for="linguistic">
                     I enjoy reading, writing, and expressing myself with words.
                 </label>
@@ -72,21 +73,24 @@
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="interpersonal" name="intelligences[]" value="interpersonal">
+                <input class="form-check-input" type="checkbox" id="interpersonal" name="intelligences[]"
+                       value="interpersonal">
                 <label class="form-check-label" for="interpersonal">
                     I understand others well and enjoy interacting with people.
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="intrapersonal" name="intelligences[]" value="intrapersonal">
+                <input class="form-check-input" type="checkbox" id="intrapersonal" name="intelligences[]"
+                       value="intrapersonal">
                 <label class="form-check-label" for="intrapersonal">
                     I am self-aware and reflect deeply on my thoughts and emotions.
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="naturalistic" name="intelligences[]" value="naturalistic">
+                <input class="form-check-input" type="checkbox" id="naturalistic" name="intelligences[]"
+                       value="naturalistic">
                 <label class="form-check-label" for="naturalistic">
                     I feel connected to nature, animals, or environmental patterns.
                 </label>

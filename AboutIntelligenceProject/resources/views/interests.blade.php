@@ -1,4 +1,4 @@
-@extends('cdn')
+@extends('layout')
 
 @section('content')
     <style>
@@ -12,7 +12,7 @@
             padding: 30px;
             background: #fff;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -46,42 +46,50 @@
             <h1>What kind of intelligence interests you?</h1>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Linguistic intelligence" id="linguistic" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Linguistic intelligence" id="linguistic"
+                       name="interests[]">
                 <label class="form-check-label" for="linguistic">Linguistic intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Logical-mathematical intelligence" id="logical" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Logical-mathematical intelligence" id="logical"
+                       name="interests[]">
                 <label class="form-check-label" for="logical">Logical-mathematical intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Visual-spatial intelligence" id="visual" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Visual-spatial intelligence" id="visual"
+                       name="interests[]">
                 <label class="form-check-label" for="visual">Visual-spatial intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Musical intelligence" id="musical" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Musical intelligence" id="musical"
+                       name="interests[]">
                 <label class="form-check-label" for="musical">Musical intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Bodily-kinesthetic intelligence" id="bodily" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Bodily-kinesthetic intelligence" id="bodily"
+                       name="interests[]">
                 <label class="form-check-label" for="bodily">Bodily-kinesthetic intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Interpersonal intelligence" id="interpersonal" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Interpersonal intelligence" id="interpersonal"
+                       name="interests[]">
                 <label class="form-check-label" for="interpersonal">Interpersonal intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Intrapersonal intelligence" id="intrapersonal" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Intrapersonal intelligence" id="intrapersonal"
+                       name="interests[]">
                 <label class="form-check-label" for="intrapersonal">Intrapersonal intelligence</label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Naturalistic intelligence" id="naturalistic" name="interests[]">
+                <input class="form-check-input" type="checkbox" value="Naturalistic intelligence" id="naturalistic"
+                       name="interests[]">
                 <label class="form-check-label" for="naturalistic">Naturalistic intelligence</label>
             </div>
 
