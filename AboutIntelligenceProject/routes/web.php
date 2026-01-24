@@ -42,3 +42,7 @@ ROute::get('related/show', [IntelligencesController::class, 'showRelated'])->nam
 Route::post('/interests/all', [IntelligencesController::class, 'allInterests'])->name('interest.all');
 
 Route::get('/describing', [IntelligencesController::class, 'describe'])->name('describing');
+
+Route::get('/quiz', [IntelligencesController::class, 'quiz'])->name('quiz');
+
+Route::post('/quiz/started', [IntelligencesController::class, 'quizStarted'])->name('quiz.started');
