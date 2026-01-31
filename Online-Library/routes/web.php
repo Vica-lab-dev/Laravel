@@ -3,11 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckAdminMiddleware;
+use App\Models\BookModel;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AdminController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,5 +28,4 @@ Route::middleware(['auth', CheckAdminMiddleware::class])
 
         Route::view('/add-book', 'admin.addBooksForm');
         Route::post('/create-book', [AdminController::class, 'create'])->name('create');
-
 });
