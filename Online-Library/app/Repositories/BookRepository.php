@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\BookModel;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class BookRepository
 {
@@ -15,11 +18,19 @@ class BookRepository
 
     public function createBook($request)
     {
+        $name = uniqid().".webp";
+        $file = $request->file('image');
+        $gd = new Driver();
+        $manager = new ImageManager($gd);
+        $image = $manager->read($file)->toWebp(80);
+        Storage::disk('public')->put("images/books/$name", (string) $image);
+
         $this->bookModel->create([
             'name' => $request->name,
             'author' => $request->author,
             'description' => $request->description,
             'price' => $request->price,
+            'image' => $name,
         ]);
     }
 }
