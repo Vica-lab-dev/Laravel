@@ -30,3 +30,12 @@ Route::middleware(['auth', CheckAdminMiddleware::class])
         Route::view('/add-book', 'admin.addBooksForm');
         Route::post('/create-book', 'create')->name('create');
 });
+
+Route::middleware('auth')
+    ->controller(UserController::class)
+    ->name('user.')
+    ->prefix('user')
+    ->group(function ()
+{
+    Route::get('/search/{book}','search')->name('search');
+});
