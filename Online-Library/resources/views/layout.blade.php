@@ -31,11 +31,12 @@
             </li>
         </ul>
 
-        <div class="form-inline mx-auto">
-            <input class="mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
-        </div>
-
+        <form class="form-inline mx-auto" action="{{ route('user.search', ['book' => $book->id]) }}" method="GET">
+            <div>
+                <input class="mr-sm-2" type="search" name="search" placeholder="Search">
+                <button type="submit" class="btn btn-outline-light">Search</button>
+            </div>
+        </form>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-2">
