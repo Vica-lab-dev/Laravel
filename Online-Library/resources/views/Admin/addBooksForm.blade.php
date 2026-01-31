@@ -11,7 +11,7 @@
                         <h4 class="mb-0">Add New Book</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.create') }}" method="POST">
+                        <form action="{{ route('admin.create') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
@@ -32,6 +32,11 @@
                             <div class="mb-3">
                                 <label for="price" class="form-label">Price</label>
                                 <input type="number" name="price" id="price" class="form-control" step="0.01" placeholder="Enter price" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="document">Image</label>
+                                <input class="form-control" type="file" name="image" id="document" accept="image/*" required>
                             </div>
 
                             <div class="d-flex justify-content-end">
