@@ -10,12 +10,17 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
+    const ROLE_CLIENT = 'client';
+    const ROLE_ADMIN = 'admin';
+
+    const ALLOWED_ROLES = [self::ROLE_CLIENT, self::ROLE_ADMIN];
 
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
