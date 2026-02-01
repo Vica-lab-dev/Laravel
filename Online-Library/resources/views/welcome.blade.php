@@ -39,7 +39,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $book->author }}</h6>
                                 <p class="card-text flex-grow-1">{{ $book->description }}</p>
                                 <p class="card-text fw-bold">${{ number_format($book->price, 2) }}</p>
-                                <a href="#" class="btn btn-primary mt-auto">Buy Now</a>
+                                <a href="{{route('user.search', ['book' => $book->id])}}" class="btn btn-primary mt-auto">Rent a Book</a>
                             </div>
                         </div>
                     </div>
