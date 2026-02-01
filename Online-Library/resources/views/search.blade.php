@@ -22,7 +22,7 @@
                             <a href="#"
                                class="btn btn-gradient text-white fw-bold py-2 px-4 rounded"
                                style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); transition: all 0.2s;">
-                                Buy Now
+                                Rent Now
                             </a>
                         </div>
                     </div>
