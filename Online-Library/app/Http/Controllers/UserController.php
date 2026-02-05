@@ -59,4 +59,19 @@ class UserController extends Controller
             'count' => $sumPrice,
         ]);
     }
+
+    public function cartForget($bookName)
+    {
+        $orders = Session::get("order", []);
+
+        foreach ($orders as $order => $book)
+        {
+            if($book['book_name'] === $bookName)
+                unset($orders[$order]);
+        }
+        Session::put('order', $orders);
+
+        return redirect()->back();
+    }
+
 }
