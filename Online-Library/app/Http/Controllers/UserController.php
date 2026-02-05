@@ -44,11 +44,7 @@ class UserController extends Controller
     public function cart()
     {
 
-        $allProducts = [];
-        foreach(Session::get('order') as $cartItem)
-        {
-            $allProducts[] = $cartItem['book_name'];
-        }
+        $allProducts = array_column(Session::get('order'), 'book_name');
 
         $products = BookModel::whereIn('name', $allProducts)->get();
 
@@ -57,6 +53,5 @@ class UserController extends Controller
             'cart' => Session::get('order'),
             'products' => $products,
         ]);
-
     }
 }
