@@ -11,7 +11,8 @@
                 </div>
 
                 <div class="card-body p-5">
-                    <form action="" method="">
+                    <form action="{{route('user.order')}}" method="POST">
+                        @csrf
 
                         <div class="form-floating mb-4">
                             <input
