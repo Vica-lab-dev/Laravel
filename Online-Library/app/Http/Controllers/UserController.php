@@ -44,15 +44,17 @@ class UserController extends Controller
     public function cart()
     {
 
-        $allProducts = array_column(Session::get('order'), 'book_name');
+        $allOrders = Session::get("order", []);
+
+        $allProducts = array_column($allOrders, 'book_name');
 
         $products = BookModel::whereIn('name', $allProducts)->get();
 
-        $price = array_column(Session::get('order'), 'price');
+        $price = array_column($allOrders, 'price');
         $sumPrice = array_sum($price);
 
         return view('cart', [
-            'cart' => Session::get('order'),
+            'cart' => $allOrders,
             'products' => $products,
             'count' => $sumPrice,
         ]);
