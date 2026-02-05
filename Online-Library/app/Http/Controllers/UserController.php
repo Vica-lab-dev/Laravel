@@ -28,4 +28,17 @@ class UserController extends Controller
     {
         return view('sessionOrder', compact( 'book'));
     }
+
+    public function order(UserOrderRequest $request)
+    {
+
+        Session::push('order', [
+            'client_name' => $request->client_name,
+            'book_name' => $request->book_name,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('user.cart');
+    }
+
 }
