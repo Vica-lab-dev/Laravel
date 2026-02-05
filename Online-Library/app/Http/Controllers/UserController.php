@@ -41,4 +41,22 @@ class UserController extends Controller
         return redirect()->route('user.cart');
     }
 
+    public function cart()
+    {
+
+        $allProducts = [];
+        foreach(Session::get('order') as $cartItem)
+        {
+            $allProducts[] = $cartItem['book_name'];
+        }
+
+        $products = BookModel::whereIn('name', $allProducts)->get();
+
+
+        return view('cart', [
+            'cart' => Session::get('order'),
+            'products' => $products,
+        ]);
+
+    }
 }
