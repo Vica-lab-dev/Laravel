@@ -42,6 +42,11 @@
                                 <input class="form-control" type="file" name="image" id="document" accept="image/*" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="document">Book PDF</label>
+                                <input class="form-control" type="file" name="pdf" id="document" required>
+                            </div>
+
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">Add Book</button>
                             </div>
