@@ -37,5 +37,12 @@ Route::middleware('auth')
     ->prefix('user')
     ->group(function ()
 {
-    Route::get('/search/{book}','search')->name('search');
+    Route::get('/book-view/{book}','book')->name('book-view');
+    Route::get('/book-search','search')->name('search');
+    Route::get('/order-form/{book}', 'sessionOrder')->name('order-form');
+    Route::post('/order', 'order')->name('order');
+    Route::get('/cart', 'cart')->name('cart');
+    Route::post("/cart-forget/{book:name}", "cartForget")->name('cart-forget');
+    Route::post("/cart/finish", "cartFinish")->name('cart-finish');
+    Route::get('/thankYou', 'thankYou')->name('thankYou');
 });
