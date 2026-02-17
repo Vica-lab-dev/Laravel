@@ -29,6 +29,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.cart') }}">Cart</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.user-books')}}">Your Books</a>
+            </li>
         </ul>
 
         <form class="form-inline mx-auto" action="{{ route('user.search', ['book' => $book->id]) }}" method="GET">
