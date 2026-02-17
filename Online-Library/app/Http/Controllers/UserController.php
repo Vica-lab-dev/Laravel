@@ -99,8 +99,16 @@ class UserController extends Controller
 
         Session::forget('order');
 
-        return view('thankYou');
-
+        return redirect()->route('user.thankYou');
     }
 
+    public function thankYou()
+    {
+        $orders = OrderModel::where('user_id', Auth::id())->get();
+        foreach ($orders as $order)
+        {
+            $id = $order->id;
+        }
+        return view('thankYou', compact('id'));
+    }
 }
