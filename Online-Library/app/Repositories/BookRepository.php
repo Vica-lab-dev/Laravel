@@ -25,11 +25,15 @@ class BookRepository
         $image = $manager->read($file)->toWebp(80);
         Storage::disk('public')->put("images/books/$name", (string) $image);
 
+        $pdfName = uniqid().".pdf";
+        $file = $request->file('pdf')->storeAs($pdfName);
+        Storage::disk('public')->put("pdf/books/$pdfName", (string) $file);
+
         $this->bookModel->create([
             'name' => $request->name,
             'author' => $request->author,
             'description' => $request->description,
-            'content' => $request->content,
+            'content' => $file,
             'price' => $request->price,
             'image' => $name,
         ]);
