@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function orderItems()
+    {
+        return $this->hasManyThrough(OrderItemsModel::class, OrderModel::class, 'user_id', 'order_id', 'id', 'id');
+    }
 }
