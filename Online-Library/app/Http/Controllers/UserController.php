@@ -97,6 +97,8 @@ class UserController extends Controller
             ]);
         }
 
+        Session::forget('order');
+
         return view('thankYou');
 
     }
