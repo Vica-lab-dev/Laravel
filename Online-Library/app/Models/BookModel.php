@@ -10,5 +10,6 @@ class BookModel extends Model
 
     protected $fillable = [
         'name', 'author', 'description', 'price', 'image',
+        'content',
     ];
 }

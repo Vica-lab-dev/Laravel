@@ -29,6 +29,7 @@ class BookRepository
             'name' => $request->name,
             'author' => $request->author,
             'description' => $request->description,
+            'content' => $request->content,
             'price' => $request->price,
             'image' => $name,
         ]);
