@@ -28,6 +28,11 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="content" class="form-label">Book Content</label>
+                                <textarea name="content" id="content" rows="4" class="form-control" placeholder="Enter book content" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="price" class="form-label">Price</label>
                                 <input type="number" name="price" id="price" class="form-control" step="0.01" placeholder="Enter price" required>
                             </div>
