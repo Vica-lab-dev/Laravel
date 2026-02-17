@@ -42,7 +42,8 @@ Route::middleware('auth')
     Route::get('/order-form/{book}', 'sessionOrder')->name('order-form');
     Route::post('/order', 'order')->name('order');
     Route::get('/cart', 'cart')->name('cart');
-    Route::post("/cart-forget/{book:name}", "cartForget")->name('cart-forget');
-    Route::post("/cart/finish", "cartFinish")->name('cart-finish');
+    Route::post('/cart-forget/{book:name}', 'cartForget')->name('cart-forget');
+    Route::post('/cart/finish', 'cartFinish')->name('cart-finish');
     Route::get('/thankYou', 'thankYou')->name('thankYou');
+    Route::get('/users-books', 'userBooks')->name('user-books');
 });
