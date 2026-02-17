@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Http\Requests\UserOrderRequest;
 use App\Models\BookModel;
+use App\Models\OrderItemsModel;
+use App\Models\OrderModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +75,30 @@ class UserController extends Controller
         Session::put('order', $orders);
 
         return redirect()->back();
+    }
+
+    public function cartFinish(Request $request)
+    {
+        $cart = Session::get('order', []);
+        $totalPrice = array_column($cart, 'price');
+        $sumPrice = array_sum($totalPrice);
+
+        $order = OrderModel::create([
+            'user_id' => Auth::id(),
+            'price' => $sumPrice,
+        ]);
+
+        foreach($cart as $item)
+        {
+            OrderItemsModel::create([
+                'order_id' => $order->id,
+                'book_name' => $item['book_name'],
+                'price' => $item['price'],
+            ]);
+        }
+
+        return view('thankYou');
+
     }
 
 }
