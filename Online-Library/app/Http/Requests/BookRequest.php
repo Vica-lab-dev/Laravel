@@ -28,6 +28,7 @@ class BookRequest extends FormRequest
             'content' => 'required|string',
             'price' => 'required|numeric|min:1',
             'image' => 'required|mimes:jpeg,jpg,png,webp|max:4096',
+            'pdf' => 'required|mimes:pdf|max:4096',
         ];
     }
 }
