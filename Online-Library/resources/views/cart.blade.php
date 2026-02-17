@@ -29,7 +29,7 @@
                         <h5 class="card-title">Total Price</h5>
                         <p class="card-text fw-bold">${{ number_format($count, 2) }}</p>
 
-                        <form action="" method="POST" class="mt-3 w-100">
+                        <form action="{{ route('user.cart-finish') }}" method="POST" class="mt-3 w-100">
                             @csrf
                             <button type="submit" class="btn btn-success btn-lg w-100">
                                 Finish
