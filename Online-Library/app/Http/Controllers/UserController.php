@@ -111,4 +111,12 @@ class UserController extends Controller
         }
         return view('thankYou', compact('id'));
     }
+
+    public function userBooks()
+    {
+
+        $items = Auth::user()->orderItems()->with('book')->get();
+
+        return view('userBooks', compact('items'));
+    }
 }
