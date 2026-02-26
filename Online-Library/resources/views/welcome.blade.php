@@ -27,23 +27,29 @@
         <h1 class="text-center text-primary">Welcome to the library</h1>
         <div class="container mt-5">
             <div class="row">
-                @foreach($allBooks as $book)
 
-                    <div class="col-md-3 mb-5">
-                        <div class="card h-100 shadow-sm align-items-center">
-                            <div class="card-body d-flex flex-column text-center">
-                                <div>
-                                    <img style="width: 200px;" src="{{asset('/storage/images/books/'. $book->image)}}" alt="BookImage">
+                @forelse($allBooks as $book)
+                            <div class="col-md-3 mb-5">
+                                <div class="card h-100 shadow-sm align-items-center">
+                                    <div class="card-body d-flex flex-column text-center">
+                                        <div>
+                                            <img style="width: 200px;" src="{{asset('/storage/images/books/'. $book->image)}}" alt="BookImage">
+                                        </div>
+                                        <h5 class="card-title">{{ $book->name }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ $book->author }}</h6>
+                                        <p class="card-text flex-grow-1">{{ $book->description }}</p>
+                                        <p class="card-text fw-bold">${{ number_format($book->price, 2) }}</p>
+                                        <a href="{{route('user.book-view', ['book' => $book->id])}}" class="btn btn-primary mt-auto">Rent a Book</a>
+                                    </div>
                                 </div>
-                                <h5 class="card-title">{{ $book->name }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $book->author }}</h6>
-                                <p class="card-text flex-grow-1">{{ $book->description }}</p>
-                                <p class="card-text fw-bold">${{ number_format($book->price, 2) }}</p>
-                                <a href="{{route('user.book-view', ['book' => $book->id])}}" class="btn btn-primary mt-auto">Rent a Book</a>
                             </div>
+
+                    @empty
+                        <div class="col-12 d-flex justify-content-center align-items-center" style="height: 200px;">
+                            <p class="text-center fw-bold text-muted">There are no books available yet</p>
                         </div>
-                    </div>
-                @endforeach
+
+                @endforelse
             </div>
         </div>
 
