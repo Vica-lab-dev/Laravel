@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -47,3 +48,8 @@ Route::middleware('auth')
     Route::get('/thankYou', 'thankYou')->name('thankYou');
     Route::get('/users-books', 'userBooks')->name('user-books');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pdf/{book}', [PdfController::class, 'pdfText'])->name('pdf.text');
+});
+
