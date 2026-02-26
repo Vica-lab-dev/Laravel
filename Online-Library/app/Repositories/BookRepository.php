@@ -26,14 +26,13 @@ class BookRepository
         Storage::disk('public')->put("images/books/$name", (string) $image);
 
         $pdfName = uniqid().".pdf";
-        $file = $request->file('pdf')->storeAs($pdfName);
-        Storage::disk('public')->put("pdf/books/$pdfName", (string) $file);
+        $relativePath = $request->file('pdf')->storeAs('pdf/books', $pdfName, 'public');
 
         $this->bookModel->create([
             'name' => $request->name,
             'author' => $request->author,
             'description' => $request->description,
-            'content' => $file,
+            'content' => $relativePath,
             'price' => $request->price,
             'image' => $name,
         ]);
