@@ -13,7 +13,7 @@
                         <h5 class="card-title">{{ $item->book->name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $item->book->author }}</h6>
                         <p class="card-text flex-grow-1">{{ $item->book->description }}</p>
-                        <a href="" class="btn btn-primary mt-auto">PDF</a>
+                        <a href="{{ route('pdf.text', ['book' => $item->book->id]) }}" class="btn btn-primary mt-auto">PDF</a>
                     </div>
                 </div>
             </div>
