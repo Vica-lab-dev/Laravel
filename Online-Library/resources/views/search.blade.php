@@ -18,11 +18,24 @@
                     </p>
                     <p class="card-text fw-bold h5 mb-3">${{ number_format($book->price, 2) }}</p>
 
+                    @php
+                        $isRented = isset($bookExists) && $bookExists->contains('book_name', $book->name);
+                    @endphp
+
+                    @if(!$isRented)
                         <a href="{{ route('user.order-form', ['book' => $book->id]) }}"
-                                class="btn btn-gradient text-white fw-bold py-2 px-4 rounded"
-                                style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); transition: all 0.2s;">
-                            Rent Now
+                           class="btn btn-gradient text-white fw-bold py-2 px-4 rounded"
+                           style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); transition: all 0.2s;">
+                            Rent now
                         </a>
+                    @else
+                        <a
+                           class="btn btn-gradient text-white fw-bold py-2 px-4 rounded"
+                           style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); transition: all 0.2s;">
+                            Rented
+                        </a>
+                    @endif
+
                 </div>
             </div>
         </div>
