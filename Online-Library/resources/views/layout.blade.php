@@ -34,13 +34,20 @@
             </li>
         </ul>
 
+    @if(isset($book))
         <form class="form-inline mx-auto" action="{{ route('user.search', ['book' => $book->id]) }}" method="GET">
             <div>
                 <input class="mr-sm-2" type="search" name="search" placeholder="Search">
                 <button type="submit" class="btn btn-outline-light">Search</button>
             </div>
         </form>
-
+        @else
+            <form class="form-inline mx-auto">
+                <div>
+                    <input class="mr-sm-2" type="search" name="search" placeholder="Search is not available" disabled>
+                </div>
+            </form>
+        @endif
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-2">
                 <a href="#" class="btn btn-light">Login</a>
