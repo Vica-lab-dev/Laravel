@@ -16,7 +16,8 @@ class UserController extends Controller
 {
     public function book(BookModel $book)
     {
-        return view('search', compact( 'book'));
+        $bookExists = OrderItemsModel::where('book_name', $book->name)->get();
+        return view('search', compact( 'book', 'bookExists'));
     }
 
     public function search(Request $request)
@@ -114,7 +115,6 @@ class UserController extends Controller
 
     public function userBooks()
     {
-
         $items = Auth::user()->orderItems()->with('book')->get();
 
         return view('userBooks', compact('items'));
