@@ -29,11 +29,7 @@
                             Rent now
                         </a>
                     @else
-                        <a
-                           class="btn btn-gradient text-white fw-bold py-2 px-4 rounded"
-                           style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); transition: all 0.2s;">
-                            Rented
-                        </a>
+                        <div class="ribbon">RENTED</div>
                     @endif
 
                 </div>
@@ -50,5 +46,22 @@
     .btn-gradient:hover {
         transform: translateY(-2px);
         box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    }
+    .card{
+        position: relative;
+    }
+    .ribbon{
+        position: absolute;
+        top: 10px;
+        left: -50px;
+        background-color: rgba(255, 0, 0, 0.8);
+        color: white;
+        padding: 10px 50px;
+        font-weight: bold;
+        text-align: center;
+        transform: rotate(-45deg);
+        font-size: 1rem;
+        pointer-events: none;
+
     }
 </style>
