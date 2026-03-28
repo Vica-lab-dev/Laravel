@@ -10,6 +10,7 @@ use App\Models\OrderModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -115,8 +116,16 @@ class UserController extends Controller
 
     public function userBooks()
     {
-        $items = Auth::user()->orderItems()->with('book')->get();
+        $paidBooks = Cache::remember("paid_books", 360, function () {
+            return Auth::user()
+                ->orderItems()
+                ->whereHas('order', function ($query) {
+                    $query->where('status', OrderModel::STATUS_PAID);
+                })
+                ->with('book')
+                ->get();
+        });
 
-        return view('userBooks', compact('items'));
+        return view('userBooks', ['paidBooks' => $paidBooks]);
     }
 }
