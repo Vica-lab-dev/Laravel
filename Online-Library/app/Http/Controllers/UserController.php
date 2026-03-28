@@ -24,8 +24,8 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $name = $request->get('search');
-        $book = BookModel::where('name', 'LIKE', "%{$name}%")
-            ->orWhere('author', 'LIKE', "%{$name}%")->first();
+        $book = BookModel::where('name', 'LIKE', "%{$name}%")->first();
+
         return view('search', compact( 'book'));
     }
 
