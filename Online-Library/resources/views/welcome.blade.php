@@ -29,7 +29,7 @@
             <div class="row">
 
                 @forelse($allBooks as $book)
-                            <div class="col-md-3 mb-5">
+                            <div class="col-md-4 mb-5">
                                 <div class="card h-100 shadow-sm align-items-center">
                                     <div class="card-body d-flex flex-column text-center">
                                         <div>
