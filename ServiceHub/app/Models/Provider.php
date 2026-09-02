@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\Providers\ProviderStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 #[Fillable([
     'name',
     'description',
@@ -22,5 +24,10 @@ class Provider extends Model
         return [
             'status' => ProviderStatus::class,
         ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(related: User::class);
     }
 }
