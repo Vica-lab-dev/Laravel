@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table(table: 'users', callback: function (Blueprint $table) {
             $table->string(column: "role");
-            $table->string(column: "status")->default("active");
+            $table->string(column: "status")->default(value: "active");
         });
     }
 
