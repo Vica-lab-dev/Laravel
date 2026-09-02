@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
     'name',
@@ -31,5 +32,10 @@ class Provider extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(related: User::class);
+    }
+
+    public function service(): HasMany
+    {
+        return $this->hasMany(related: Service::class);
     }
 }
