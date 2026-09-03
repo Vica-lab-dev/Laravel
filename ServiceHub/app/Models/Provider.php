@@ -43,4 +43,9 @@ class Provider extends Model
     {
         return $this->hasMany(related: WorkingHour::class);
     }
+
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(related: Booking::class);
+    }
 }
