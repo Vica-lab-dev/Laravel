@@ -6,6 +6,7 @@ use App\Enums\Services\ServiceStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #[Fillable([
     'name',
@@ -25,5 +26,10 @@ class Service extends Model
     public function provider(): BelongsTo
     {
         return $this->belongsTo(related: Provider::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(related: Category::class);
     }
 }
