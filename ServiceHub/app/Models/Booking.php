@@ -21,17 +21,17 @@ class Booking extends Model
         ];
     }
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(related: User::class);
     }
 
-    public function services(): BelongsTo
+    public function service(): BelongsTo
     {
         return $this->belongsTo(related: Service::class);
     }
 
-    public function providers(): BelongsTo
+    public function provider(): BelongsTo
     {
         return $this->belongsTo(related: Provider::class);
     }
