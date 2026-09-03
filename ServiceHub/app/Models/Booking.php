@@ -6,6 +6,7 @@ use App\Enums\Bookings\BookingStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
     'service_id',
@@ -33,5 +34,10 @@ class Booking extends Model
     public function providers(): BelongsTo
     {
         return $this->belongsTo(related: Provider::class);
+    }
+
+    public function review(): HasOne
+    {
+        return $this->hasOne(related: Review::class);
     }
 }
