@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Bookings\BookingStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
     'service_id',
@@ -17,5 +18,10 @@ class Booking extends Model
         return [
             'status' => BookingStatus::class,
         ];
+    }
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(related: User::class);
     }
 }
