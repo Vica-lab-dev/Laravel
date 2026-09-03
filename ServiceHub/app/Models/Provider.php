@@ -48,4 +48,9 @@ class Provider extends Model
     {
         return $this->hasMany(related: Booking::class);
     }
+
+    public function exceptions(): HasMany
+    {
+        return $this->hasMany(related: ProviderException::class);
+    }
 }
