@@ -16,4 +16,9 @@ class Review extends Model
     {
         return $this->belongsTo(related: Booking::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->BelongsTo(related: User::class);
+    }
 }
