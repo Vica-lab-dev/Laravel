@@ -38,4 +38,9 @@ class Provider extends Model
     {
         return $this->hasMany(related: Service::class);
     }
+
+    public function workingHours(): HasMany
+    {
+        return $this->hasMany(related: WorkingHour::class);
+    }
 }
