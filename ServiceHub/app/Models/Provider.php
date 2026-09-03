@@ -34,7 +34,7 @@ class Provider extends Model
         return $this->belongsTo(related: User::class);
     }
 
-    public function service(): HasMany
+    public function services(): HasMany
     {
         return $this->hasMany(related: Service::class);
     }
