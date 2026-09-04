@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create(table: 'providers', callback:  function (Blueprint $table): void {
@@ -21,14 +18,11 @@ return new class extends Migration
             $table->string(column: 'city');
             $table->decimal(column: 'latitude', total: 10, places: 7);
             $table->decimal(column: 'longitude', total: 10, places: 7);
-            $table->string(column: 'status')->default("active");
+            $table->string(column: 'status')->default(value: "active");
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists(table: 'providers');
