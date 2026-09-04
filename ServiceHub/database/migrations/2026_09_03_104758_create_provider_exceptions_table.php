@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create(table: 'provider_exceptions', callback: function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid(column: 'provider_id')->constrained('providers')->cascadeOnDelete();
+            $table->foreignUuid(column: 'provider_id')->constrained(table: 'providers')->cascadeOnDelete();
             $table->date(column: 'exception_date');
             $table->time(column: 'start_time')->nullable();
             $table->time(column: 'end_time')->nullable();
