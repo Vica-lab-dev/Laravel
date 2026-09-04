@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Users\UserRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class UserFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return Factory|UserFactory
      */
     public function definition(): array
     {
@@ -30,6 +31,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => UserRole::CUSTOMER,
         ];
     }
 
@@ -40,6 +42,20 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function provider(): Factory|UserFactory
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRole::PROVIDER,
+        ]);
+    }
+
+    public function admin(): Factory|UserFactory
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRole::ADMIN,
         ]);
     }
 }
