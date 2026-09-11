@@ -33,4 +33,11 @@ class ProviderExceptionFactory extends Factory
             'end_time' => $endTime?->format(format: 'H:i:s'),
         ];
     }
+
+    public function forProvider(Provider $provider): static
+    {
+        return $this->state([
+            'provider_id' => $provider->id,
+        ]);
+    }
 }
