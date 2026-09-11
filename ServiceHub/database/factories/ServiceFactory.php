@@ -40,7 +40,6 @@ class ServiceFactory extends Factory
             'duration' => fake()->randomElement([
                 30, 60, 90,
             ]),
-            'provider_id' => Provider::factory(),
         ];
     }
 
