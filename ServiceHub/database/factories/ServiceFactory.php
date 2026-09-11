@@ -43,4 +43,11 @@ class ServiceFactory extends Factory
             'provider_id' => Provider::factory(),
         ];
     }
+
+    public function forProvider(Provider $provider): static
+    {
+        return $this->state([
+            'provider_id' => $provider->id,
+        ]);
+    }
 }
