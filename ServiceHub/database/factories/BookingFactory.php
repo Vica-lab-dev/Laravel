@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Bookings\BookingStatus;
 use App\Models\Booking;
 use App\Models\Provider;
 use App\Models\Service;
@@ -39,5 +40,14 @@ class BookingFactory extends Factory
                 'cancelled',
             ]),
         ];
+    }
+
+    public function completed()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => BookingStatus::COMPLETED,
+            ];
+        });
     }
 }
