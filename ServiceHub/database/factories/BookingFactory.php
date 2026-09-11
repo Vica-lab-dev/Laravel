@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\Bookings\BookingStatus;
 use App\Models\Booking;
-use App\Models\Provider;
 use App\Models\Service;
 use App\Models\User;
 use Carbon\Carbon;
@@ -22,17 +21,8 @@ class BookingFactory extends Factory
      */
     public function definition(): array
     {
-        $service = Service::factory()->create();
-        $startsAt = fake()->dateTimeBetween(startDate: 'today', endDate: '+30 days');
-        $endsAt = Carbon::instance($startsAt)->addMinutes($service->duration);
-
         return [
             'user_id' => User::factory(),
-            'service_id' => $service->id,
-            'provider_id' => $service->provider_id,
-            'starts_at' => $startsAt,
-            'ends_at' => $endsAt,
-            'price' => $service->price,
             'status' => fake()->randomElement([
                 'pending',
                 'confirmed',
@@ -49,5 +39,12 @@ class BookingFactory extends Factory
                 'status' => BookingStatus::COMPLETED,
             ];
         });
+    }
+
+    public function forUser(User $user): static
+    {
+        return $this->state([
+            'user_id' => $user->id,
+        ]);
     }
 }
