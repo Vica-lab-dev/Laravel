@@ -22,7 +22,6 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
             'status' => fake()->randomElement([
                 'pending',
                 'confirmed',
