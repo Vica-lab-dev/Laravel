@@ -47,4 +47,18 @@ class BookingFactory extends Factory
             'user_id' => $user->id,
         ]);
     }
+
+    public function forService(Service $service): static
+    {
+        $startsAt = fake()->dateTimeBetween(startDate: 'today', endDate: '+30 days');
+        $endsAt = Carbon::instance($startsAt)->addMinutes($service->duration);
+
+        return $this->state([
+            'service_id' => $service->id,
+            'provider_id' => $service->provider_id,
+            'price' => $service->price,
+            'starts_at' => $startsAt,
+            'ends_at' => $endsAt,
+        ]);
+    }
 }
