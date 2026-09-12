@@ -43,11 +43,13 @@ class DatabaseSeeder extends Seeder
             $service->categories()->sync($categoriesIds);
         }
 
-        $customer = $customers->random();
-        $service = $services->random();
+        for($i = 0; $i < 10; $i++) {
+            $customer = $customers->random();
+            $service = $services->random();
 
-        $booking = Booking::factory()->forUser($customer)->forService($service)->completed()->create();
+            $booking = Booking::factory()->forUser($customer)->forService($service)->completed()->create();
 
-        Review::factory()->forBooking($booking)->create();
+            Review::factory()->forBooking($booking)->create();
+        }
     }
 }
