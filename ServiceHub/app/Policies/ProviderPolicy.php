@@ -70,6 +70,6 @@ class ProviderPolicy
      */
     public function forceDelete(User $user, Provider $provider): bool
     {
-        return false;
+        return $user->role === UserRole::ADMIN;
     }
 }
