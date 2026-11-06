@@ -5,8 +5,6 @@ namespace App\Policies;
 use App\Enums\Users\UserRole;
 use App\Models\Provider;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
-
 class ProviderPolicy
 {
     public function viewAny(User $user): bool
