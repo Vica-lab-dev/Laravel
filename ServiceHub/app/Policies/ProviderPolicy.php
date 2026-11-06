@@ -22,7 +22,7 @@ class ProviderPolicy
      */
     public function view(User $user, Provider $provider): bool
     {
-        return false;
+        return true;
     }
 
     /**
