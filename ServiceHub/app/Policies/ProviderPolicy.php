@@ -9,33 +9,21 @@ use Illuminate\Auth\Access\Response;
 
 class ProviderPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
     public function viewAny(User $user): bool
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
     public function view(User $user, Provider $provider): bool
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
     public function create(User $user): bool
     {
         return $user->role === UserRole::CUSTOMER;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $user, Provider $provider): bool
     {
         return (
@@ -47,27 +35,18 @@ class ProviderPolicy
         );
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
     public function delete(User $user, Provider $provider): bool
     {
         return $user->id === $provider->user_id
             || $user->role === UserRole::ADMIN;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
     public function restore(User $user, Provider $provider): bool
     {
         return $user->id === $provider->user_id
             || $user->role === UserRole::ADMIN;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
     public function forceDelete(User $user, Provider $provider): bool
     {
         return $user->role === UserRole::ADMIN;
