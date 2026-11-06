@@ -30,7 +30,7 @@ class ProviderPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role === UserRole::CUSTOMER;
     }
 
     /**
