@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProviderController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,4 +13,8 @@ Route::name("auth.")->controller(AuthController::class)->group(function () {
     Route::post("auth/register", "register")->name("register");
     Route::post("auth/login", "login")->name("login");
     Route::post("auth/logout", "logout")->middleware("auth:sanctum")->name("logout");
+});
+
+Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderController::class)->group(function () {
+    Route::get("/providers", "index")->name("index");
 });
