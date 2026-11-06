@@ -52,7 +52,8 @@ class ProviderPolicy
      */
     public function delete(User $user, Provider $provider): bool
     {
-        return false;
+        return $user->id === $provider->user_id
+            || $user->role === UserRole::ADMIN;
     }
 
     /**
