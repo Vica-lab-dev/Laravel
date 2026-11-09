@@ -14,4 +14,11 @@ class ProviderController extends Controller
         $providers = Provider::all();
         return response()->json($providers);
     }
+
+    public function show(Provider $provider)
+    {
+        Gate::authorize(ability: "view", arguments: $provider);
+
+        return response()->json($provider);
+    }
 }
