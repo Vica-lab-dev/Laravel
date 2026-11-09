@@ -60,4 +60,18 @@ class ProviderController extends Controller
             "message" => "Provider deleted.",
         ]);
     }
+
+    public function restore(string $id)
+    {
+        $provider = Provider::withTrashed()->findOrFail($id);
+
+        Gate::authorize(ability: 'restore', arguments: $provider);
+
+        $provider->restore();
+
+        return response()->json([
+            "message" => "Provider restored.",
+            "provider" => $provider,
+        ]);
+    }
 }
