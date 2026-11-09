@@ -18,4 +18,5 @@ Route::name("auth.")->controller(AuthController::class)->group(function () {
 Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderController::class)->group(function () {
     Route::get("/providers", "index")->name("index");
     Route::get("/providers/{provider}", "show")->name("show");
+    Route::post("/providers", "store")->name("store");
 });
