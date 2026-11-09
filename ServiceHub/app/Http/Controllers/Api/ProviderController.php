@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProviderRequest;
+use App\Http\Requests\UpdateProviderRequest;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Gate;
 
@@ -35,5 +36,18 @@ class ProviderController extends Controller
             "message" => "Provider created.",
             "provider" => $provider,
         ], status: 201);
+    }
+
+    public function update(UpdateProviderRequest $request, Provider $provider)
+    {
+        Gate::authorize(ability: 'update', arguments: $provider);
+
+        $data = $request->validated();
+        $provider->update($data);
+
+        return response()->json([
+            "message" => "Provider updated.",
+            "provider" => $provider,
+        ]);
     }
 }
