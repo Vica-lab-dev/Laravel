@@ -50,4 +50,14 @@ class ProviderController extends Controller
             "provider" => $provider,
         ]);
     }
+
+    public function destroy(Provider $provider)
+    {
+        Gate::authorize(ability: 'delete', arguments: $provider);
+        $provider->delete();
+
+        return response()->json([
+            "message" => "Provider deleted.",
+        ]);
+    }
 }
