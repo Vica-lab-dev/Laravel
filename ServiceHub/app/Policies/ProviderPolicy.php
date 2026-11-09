@@ -19,7 +19,7 @@ class ProviderPolicy
 
     public function create(User $user): bool
     {
-        return $user->role === UserRole::CUSTOMER;
+        return $user->role === UserRole::CUSTOMER && !$user->provider()->exists();
     }
 
     public function update(User $user, Provider $provider): bool
