@@ -19,4 +19,5 @@ Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderControl
     Route::get("/providers", "index")->name("index");
     Route::get("/providers/{provider}", "show")->name("show");
     Route::post("/providers", "store")->name("store");
+    Route::patch("/providers/{provider}", "update")->name("update");
 });
