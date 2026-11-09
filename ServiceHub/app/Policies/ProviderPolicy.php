@@ -25,11 +25,8 @@ class ProviderPolicy
     public function update(User $user, Provider $provider): bool
     {
         return (
-            $user->role === UserRole::ADMIN ||
-            (
-                $user->id === $provider->user_id &&
-                $user->role === UserRole::PROVIDER
-            )
+            $user->role === UserRole::ADMIN
+            || $user->id === $provider->user_id
         );
     }
 
