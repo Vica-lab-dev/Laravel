@@ -23,7 +23,7 @@ Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderControl
     Route::patch("/providers/{provider}", "update")->name("update");
     Route::delete("/providers/{provider}", "destroy")->name("destroy");
     Route::post("/providers/{provider}/restore", "restore")->name("restore");
-    Route::delete("/providers/{provider}/forceDelete", "forceDelete")->name("forceDelete");
+    Route::delete("/providers/{provider}/force-delete", "forceDelete")->name("forceDelete");
 });
 
 Route::middleware("auth:sanctum")->name("category.")->controller(CategoryController::class)->group(function () {
