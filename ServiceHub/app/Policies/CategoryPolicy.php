@@ -54,7 +54,7 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category): bool
     {
-        return false;
+        return $user->role === UserRole::ADMIN;
     }
 
     /**
