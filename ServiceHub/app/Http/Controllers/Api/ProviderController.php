@@ -76,4 +76,17 @@ class ProviderController extends Controller
             "provider" => $provider,
         ]);
     }
+
+    public function forceDelete(String $id)
+    {
+        $provider = Provider::withTrashed()->findOrFail($id);
+
+        Gate::authorize(ability: 'forceDelete', arguments: $provider);
+
+        $provider->forceDelete();
+
+        return response()->json([
+            "message" => "Provider permanently deleted.",
+        ]);
+    }
 }
