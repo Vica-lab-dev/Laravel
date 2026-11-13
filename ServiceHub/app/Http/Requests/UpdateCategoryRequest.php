@@ -17,7 +17,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             "name" => "sometimes|string|max:32",
-            "slug" => ["sometimes","string","max:64", Rule::unique('categories','slug')->ignore($this->category)],
+            "slug" => ["sometimes","string","max:64", Rule::unique(table: 'categories',column: 'slug')->ignore($this->category)],
             "description" => "sometimes|string|max:5000",
         ];
     }
