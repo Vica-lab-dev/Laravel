@@ -17,4 +17,11 @@ class CategoryController extends Controller
 
         return response()->json($categories);
     }
+
+    public function show(Category $category)
+    {
+        Gate::authorize(ability: 'view', arguments: $category);
+
+        return response()->json($category);
+    }
 }
