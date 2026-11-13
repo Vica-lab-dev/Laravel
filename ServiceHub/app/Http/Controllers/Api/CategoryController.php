@@ -79,4 +79,17 @@ class CategoryController extends Controller
             "category" => $category,
         ]);
     }
+
+    public function forceDelete(String $id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+
+        Gate::authorize(ability: 'forceDelete', arguments: $category);
+
+        $category->forceDelete();
+
+        return response()->json([
+            "message" => "Category permanently deleted",
+        ]);
+    }
 }
