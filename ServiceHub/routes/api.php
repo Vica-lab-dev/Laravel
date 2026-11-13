@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProviderController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
@@ -23,4 +24,14 @@ Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderControl
     Route::delete("/providers/{provider}", "destroy")->name("destroy");
     Route::post("/providers/{provider}/restore", "restore")->name("restore");
     Route::delete("/providers/{provider}/forceDelete", "forceDelete")->name("forceDelete");
+});
+
+Route::middleware("auth:sanctum")->name("category.")->controller(CategoryController::class)->group(function () {
+    Route::get("/categories", "index")->name("index");
+    Route::get("/categories/{category}", "show")->name("show");
+    Route::post("/categories", "store")->name("store");
+    Route::patch("/categories/{category}", "update")->name("update");
+    Route::delete("/categories/{category}", "destroy")->name("destroy");
+    Route::post("/categories/{category}/restore", "restore")->name("restore");
+    Route::delete("/categories/{category}/force-delete", "forceDelete")->name("forceDelete");
 });
