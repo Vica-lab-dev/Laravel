@@ -38,7 +38,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
-        return false;
+        return $user->role === UserRole::ADMIN;
     }
 
     /**
