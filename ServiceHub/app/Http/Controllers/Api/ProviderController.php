@@ -77,7 +77,7 @@ class ProviderController extends Controller
         ]);
     }
 
-    public function forceDelete(String $id)
+    public function forceDelete(string $id)
     {
         $provider = Provider::withTrashed()->findOrFail($id);
 

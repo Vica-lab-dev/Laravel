@@ -66,7 +66,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function restore(String $id)
+    public function restore(string $id)
     {
         $category = Category::withTrashed()->findOrFail($id);
 
@@ -80,7 +80,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function forceDelete(String $id)
+    public function forceDelete(string $id)
     {
         $category = Category::withTrashed()->findOrFail($id);
 
