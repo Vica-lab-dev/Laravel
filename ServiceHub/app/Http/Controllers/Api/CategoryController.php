@@ -65,4 +65,18 @@ class CategoryController extends Controller
             "message" => "Category deleted",
         ]);
     }
+
+    public function restore(String $id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+
+        Gate::authorize(ability: 'restore', arguments: $category);
+
+        $category->restore();
+
+        return response()->json([
+            "message" => "Category restored",
+            "category" => $category,
+        ]);
+    }
 }
