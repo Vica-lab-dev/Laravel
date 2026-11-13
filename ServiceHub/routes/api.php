@@ -22,4 +22,5 @@ Route::middleware("auth:sanctum")->name("provider.")->controller(ProviderControl
     Route::patch("/providers/{provider}", "update")->name("update");
     Route::delete("/providers/{provider}", "destroy")->name("destroy");
     Route::post("/providers/{provider}/restore", "restore")->name("restore");
+    Route::delete("/providers/{provider}/forceDelete", "forceDelete")->name("forceDelete");
 });
