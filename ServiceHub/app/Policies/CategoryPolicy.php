@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Users\UserRole;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -29,7 +30,7 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role === UserRole::ADMIN;
     }
 
     /**
