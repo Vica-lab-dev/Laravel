@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -38,5 +39,19 @@ class CategoryController extends Controller
             "message" => "Category created",
             "category" => $category,
         ], status: 201);
+    }
+
+    public function update(UpdateCategoryRequest $request, Category $category)
+    {
+        Gate::authorize(ability: 'update', arguments: $category);
+
+        $data = $request->validated();
+
+        $category->update($data);
+
+        return response()->json([
+            "message" => "Category updated",
+            "category" => $category,
+        ]);
     }
 }
