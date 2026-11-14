@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enums\Users\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
-use App\Models\Provider;
 use App\Models\Service;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
