@@ -15,7 +15,7 @@ class ServiceController extends Controller
     {
         Gate::authorize("viewAny",Service::class);
 
-        $services = Service::all();
+        $services = Service::with("categories")->get();
 
         return response()->json($services);
     }
