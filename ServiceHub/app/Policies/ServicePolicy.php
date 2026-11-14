@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\Users\UserRole;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -29,7 +30,7 @@ class ServicePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->provider()->exists();
     }
 
     /**
