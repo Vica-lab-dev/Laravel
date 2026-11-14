@@ -47,7 +47,7 @@ class ServiceController extends Controller
             return $service;
         });
 
-        return response()->json($service->load("categories"), status: 201);
+        return response()->json($service->load("categories"),201);
     }
 
     public function update(UpdateServiceRequest $request, Service $service)
