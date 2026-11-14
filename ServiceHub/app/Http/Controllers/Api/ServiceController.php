@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Enums\Users\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreServiceRequest;
+use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Provider;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -47,5 +48,16 @@ class ServiceController extends Controller
         });
 
         return response()->json($service->load("categories"), status: 201);
+    }
+
+    public function update(UpdateServiceRequest $request, Service $service)
+    {
+        Gate::authorize("update", $service);
+
+        $data = $request->validated();
+
+        $service->update($data);
+
+        return response()->json($service);
     }
 }
