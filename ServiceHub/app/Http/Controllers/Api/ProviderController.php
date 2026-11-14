@@ -58,9 +58,7 @@ class ProviderController extends Controller
         Gate::authorize( 'delete', $provider);
         $provider->delete();
 
-        return response()->json([
-            "message" => "Provider deleted.",
-        ]);
+        return response()->noContent();
     }
 
     public function restore(string $id)
@@ -85,8 +83,6 @@ class ProviderController extends Controller
 
         $provider->forceDelete();
 
-        return response()->json([
-            "message" => "Provider permanently deleted.",
-        ]);
+        return response()->noContent();
     }
 }
