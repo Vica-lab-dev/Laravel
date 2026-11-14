@@ -66,5 +66,7 @@ class ServiceController extends Controller
         Gate::authorize("delete", $service);
 
         $service->delete();
+
+        return response()->noContent();
     }
 }
