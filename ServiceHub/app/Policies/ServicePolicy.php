@@ -46,7 +46,8 @@ class ServicePolicy
      */
     public function delete(User $user, Service $service): bool
     {
-        return false;
+        return $user->id === $service->provider->user_id
+            || $user->role === UserRole::ADMIN;
     }
 
     /**
