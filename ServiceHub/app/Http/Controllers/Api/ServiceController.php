@@ -17,4 +17,11 @@ class ServiceController extends Controller
 
         return response()->json($services);
     }
+
+    public function show(Service $service)
+    {
+        Gate::authorize(ability: "view", arguments: $service);
+
+        return response()->json($service);
+    }
 }
