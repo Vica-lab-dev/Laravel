@@ -8,23 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(table: 'providers', callback:  function (Blueprint $table): void {
-            $table->uuid(column: 'id')->primary();
-            $table->foreignId(column: 'user_id')->unique()->constrained(table: 'users')->cascadeOnDelete();
-            $table->string(column: 'name');
-            $table->text(column: 'description');
-            $table->string(column: 'phone');
-            $table->string(column: 'address');
-            $table->string(column: 'city');
-            $table->decimal(column: 'latitude', total: 10, places: 7);
-            $table->decimal(column: 'longitude', total: 10, places: 7);
-            $table->string(column: 'status')->default(value: "active");
+        Schema::create('providers', function (Blueprint $table): void {
+            $table->uuid('id')->primary();
+            $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
+            $table->string('name');
+            $table->text('description');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('city');
+            $table->decimal('latitude',10,7);
+            $table->decimal('longitude',10,7);
+            $table->string('status')->default("active");
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists(table: 'providers');
+        Schema::dropIfExists('providers');
     }
 };

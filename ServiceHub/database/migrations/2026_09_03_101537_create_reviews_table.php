@@ -8,20 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(table: 'reviews', callback:  function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(column: 'booking_id')->constrained(table: 'bookings')->cascadeOnDelete();
-            $table->foreignId(column: 'user_id')->constrained(table: 'users')->cascadeOnDelete();
-            $table->integer(column: 'rating');
-            $table->text(column: 'comment');
+            $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->integer('rating');
+            $table->text('comment');
             $table->timestamps();
 
-            $table->unique(columns: 'booking_id');
+            $table->unique('booking_id');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists(table: 'reviews');
+        Schema::dropIfExists('reviews');
     }
 };

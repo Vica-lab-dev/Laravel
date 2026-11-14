@@ -17,6 +17,6 @@ class ProviderException extends Model
     use HasFactory;
     public function provider(): BelongsTo
     {
-        return $this->belongsTo(related: Provider::class);
+        return $this->belongsTo(Provider::class);
     }
 }

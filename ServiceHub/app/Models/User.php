@@ -39,16 +39,16 @@ class User extends Authenticatable
 
     public function provider(): HasOne
     {
-        return $this->hasOne(related: Provider::class);
+        return $this->hasOne(Provider::class);
     }
 
     public function bookings(): HasMany
     {
-        return $this->hasMany(related: Booking::class);
+        return $this->hasMany(Booking::class);
     }
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(related: Review::class);
+        return $this->hasMany(Review::class);
     }
 }

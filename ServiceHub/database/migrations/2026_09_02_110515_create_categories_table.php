@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(table: 'categories', callback: function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'name');
-            $table->string(column: 'slug')->unique();
-            $table->text(column: 'description');
-            $table->string(column: 'status')->default(value: 'active');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists(table: 'categories');
+        Schema::dropIfExists('categories');
     }
 };

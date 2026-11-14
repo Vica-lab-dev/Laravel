@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(table: 'category_service', callback:  function (Blueprint $table) {
-            $table->foreignId(column:'service_id')->constrained(table: 'services')->cascadeOnDelete();
-            $table->foreignId(column:'category_id')->constrained(table: 'categories')->cascadeOnDelete();
+        Schema::create('category_service', function (Blueprint $table) {
+            $table->foreignId('service_id')->constrained('services')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->unique(['category_id', 'service_id']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists(table: 'category_service');
+        Schema::dropIfExists('category_service');
     }
 };

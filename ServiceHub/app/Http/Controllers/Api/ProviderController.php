@@ -12,7 +12,7 @@ class ProviderController extends Controller
 {
     public function index()
     {
-        Gate::authorize(ability: 'viewAny', arguments: Provider::class);
+        Gate::authorize( 'viewAny', Provider::class);
 
         $providers = Provider::all();
 
@@ -21,14 +21,14 @@ class ProviderController extends Controller
 
     public function show(Provider $provider)
     {
-        Gate::authorize(ability: "view", arguments: $provider);
+        Gate::authorize( "view", $provider);
 
         return response()->json($provider);
     }
 
     public function store(StoreProviderRequest $request)
     {
-        Gate::authorize(ability: 'create', arguments: Provider::class);
+        Gate::authorize( 'create', Provider::class);
 
         $data = $request->validated();
 
@@ -42,7 +42,7 @@ class ProviderController extends Controller
 
     public function update(UpdateProviderRequest $request, Provider $provider)
     {
-        Gate::authorize(ability: 'update', arguments: $provider);
+        Gate::authorize( 'update', $provider);
 
         $data = $request->validated();
         $provider->update($data);
@@ -55,7 +55,7 @@ class ProviderController extends Controller
 
     public function destroy(Provider $provider)
     {
-        Gate::authorize(ability: 'delete', arguments: $provider);
+        Gate::authorize( 'delete', $provider);
         $provider->delete();
 
         return response()->json([
@@ -67,7 +67,7 @@ class ProviderController extends Controller
     {
         $provider = Provider::withTrashed()->findOrFail($id);
 
-        Gate::authorize(ability: 'restore', arguments: $provider);
+        Gate::authorize( 'restore', $provider);
 
         $provider->restore();
 
@@ -81,7 +81,7 @@ class ProviderController extends Controller
     {
         $provider = Provider::withTrashed()->findOrFail($id);
 
-        Gate::authorize(ability: 'forceDelete', arguments: $provider);
+        Gate::authorize( 'forceDelete', $provider);
 
         $provider->forceDelete();
 

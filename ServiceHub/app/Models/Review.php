@@ -16,11 +16,11 @@ class Review extends Model
     use HasFactory;
     public function booking(): BelongsTo
     {
-        return $this->belongsTo(related: Booking::class);
+        return $this->belongsTo(Booking::class);
     }
 
     public function user(): BelongsTo
     {
-        return $this->BelongsTo(related: User::class);
+        return $this->BelongsTo(User::class);
     }
 }

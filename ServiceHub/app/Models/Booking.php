@@ -24,21 +24,21 @@ class Booking extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(related: User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function service(): BelongsTo
     {
-        return $this->belongsTo(related: Service::class);
+        return $this->belongsTo(Service::class);
     }
 
     public function provider(): BelongsTo
     {
-        return $this->belongsTo(related: Provider::class);
+        return $this->belongsTo(Provider::class);
     }
 
     public function review(): HasOne
     {
-        return $this->hasOne(related: Review::class);
+        return $this->hasOne(Review::class);
     }
 }

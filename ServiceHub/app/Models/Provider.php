@@ -33,26 +33,26 @@ class Provider extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(related: User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function services(): HasMany
     {
-        return $this->hasMany(related: Service::class);
+        return $this->hasMany(Service::class);
     }
 
     public function workingHours(): HasMany
     {
-        return $this->hasMany(related: WorkingHour::class);
+        return $this->hasMany(WorkingHour::class);
     }
 
     public function bookings(): HasMany
     {
-        return $this->hasMany(related: Booking::class);
+        return $this->hasMany(Booking::class);
     }
 
     public function exceptions(): HasMany
     {
-        return $this->hasMany(related: ProviderException::class);
+        return $this->hasMany(ProviderException::class);
     }
 }

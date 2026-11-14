@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(table: 'provider_exceptions', callback: function (Blueprint $table) {
+        Schema::create('provider_exceptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid(column: 'provider_id')->constrained(table: 'providers')->cascadeOnDelete();
-            $table->date(column: 'exception_date');
-            $table->time(column: 'start_time')->nullable();
-            $table->time(column: 'end_time')->nullable();
+            $table->foreignUuid('provider_id')->constrained('providers')->cascadeOnDelete();
+            $table->date('exception_date');
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists(table: 'provider_exceptions');
+        Schema::dropIfExists('provider_exceptions');
     }
 };

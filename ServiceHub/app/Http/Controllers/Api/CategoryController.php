@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        Gate::authorize(ability: 'viewAny', arguments: Category::class);
+        Gate::authorize('viewAny',Category::class);
 
         $categories = Category::all();
 
@@ -22,14 +22,14 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        Gate::authorize(ability: 'view', arguments: $category);
+        Gate::authorize('view', $category);
 
         return response()->json($category);
     }
 
     public function store(StoreCategoryRequest $request)
     {
-        Gate::authorize(ability: 'create', arguments: Category::class);
+        Gate::authorize('create',Category::class);
 
         $data = $request->validated();
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        Gate::authorize(ability: 'update', arguments: $category);
+        Gate::authorize('update', $category);
 
         $data = $request->validated();
 
@@ -57,7 +57,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        Gate::authorize(ability: 'delete', arguments: $category);
+        Gate::authorize('delete', $category);
 
         $category->delete();
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $category = Category::withTrashed()->findOrFail($id);
 
-        Gate::authorize(ability: 'restore', arguments: $category);
+        Gate::authorize('restore', $category);
 
         $category->restore();
 
@@ -84,7 +84,7 @@ class CategoryController extends Controller
     {
         $category = Category::withTrashed()->findOrFail($id);
 
-        Gate::authorize(ability: 'forceDelete', arguments: $category);
+        Gate::authorize('forceDelete', $category);
 
         $category->forceDelete();
 

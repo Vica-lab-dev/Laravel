@@ -28,16 +28,16 @@ class Service extends Model
 
     public function provider(): BelongsTo
     {
-        return $this->belongsTo(related: Provider::class);
+        return $this->belongsTo(Provider::class);
     }
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(related: Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function bookings(): HasMany
     {
-        return $this->hasMany(related: Booking::class);
+        return $this->hasMany(Booking::class);
     }
 }

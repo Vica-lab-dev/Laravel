@@ -15,7 +15,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        Gate::authorize(ability: "viewAny", arguments: Service::class);
+        Gate::authorize("viewAny",Service::class);
 
         $services = Service::all();
 
@@ -24,14 +24,14 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        Gate::authorize(ability: "view", arguments: $service);
+        Gate::authorize("view", $service);
 
         return response()->json($service);
     }
 
     public function store(StoreServiceRequest $request)
     {
-        Gate::authorize(ability: "create", arguments: Service::class);
+        Gate::authorize("create",Service::class);
 
         $data = $request->validated();
 

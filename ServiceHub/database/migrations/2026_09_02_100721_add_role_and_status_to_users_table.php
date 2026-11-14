@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table(table: 'users', callback: function (Blueprint $table) {
-            $table->string(column: "role");
-            $table->string(column: "status")->default(value: "active");
+        Schema::table('users', function (Blueprint $table) {
+            $table->string( "role");
+            $table->string("status")->default("active");
         });
     }
 
     public function down(): void
     {
-        Schema::table(table: 'users', callback: function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['role', 'status']);
         });
     }
