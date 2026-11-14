@@ -38,7 +38,7 @@ class ServicePolicy
      */
     public function update(User $user, Service $service): bool
     {
-        return false;
+        return $user->id === $service->provider->user_id;
     }
 
     /**
