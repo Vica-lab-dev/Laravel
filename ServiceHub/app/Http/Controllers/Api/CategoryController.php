@@ -61,9 +61,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return response()->json([
-            "message" => "Category deleted",
-        ]);
+        return response()->noContent();
     }
 
     public function restore(string $id)
@@ -88,8 +86,6 @@ class CategoryController extends Controller
 
         $category->forceDelete();
 
-        return response()->json([
-            "message" => "Category permanently deleted",
-        ]);
+        return response()->noContent();
     }
 }
