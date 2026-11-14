@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProviderController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,12 @@ Route::middleware("auth:sanctum")->name("category.")->controller(CategoryControl
     Route::delete("/categories/{category}", "destroy")->name("destroy");
     Route::post("/categories/{category}/restore", "restore")->name("restore");
     Route::delete("/categories/{category}/force-delete", "forceDelete")->name("forceDelete");
+});
+
+Route::middleware("auth:sanctum")->name("service.")->controller(ServiceController::class)->group(function () {
+    Route::get("/services", "index")->name("index");
+    Route::get("/services/{service}", "show")->name("show");
+    Route::post("/services", "store")->name("store");
+    Route::patch("/services/{service}", "update")->name("update");
+    Route::delete("/services/{service}", "destroy")->name("destroy");
 });
