@@ -60,4 +60,11 @@ class ServiceController extends Controller
 
         return response()->json($service);
     }
+
+    public function destroy(Service $service)
+    {
+        Gate::authorize("delete", $service);
+
+        $service->delete();
+    }
 }
